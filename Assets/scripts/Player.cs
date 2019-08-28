@@ -100,10 +100,12 @@ public class Player : MonoBehaviour
             other.GetComponent<Sino>().iniciarCountdown();
             
         }
+     
         //if (other.gameObject.CompareTag("BaseAlavanca")) //Sino.isTimerOn == true??
        // {    
           //  other.GetComponent<BaseAlavanca>().Activate();
 
         //}
     }
+    
 }

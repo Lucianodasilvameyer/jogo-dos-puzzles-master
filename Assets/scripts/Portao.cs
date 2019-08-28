@@ -12,9 +12,16 @@ public class Portao : MonoBehaviour
     private bool _alacancaAcionada;
     private bool _playerColidindo;
 
+    [SerializeField]
+    Sino sinoCondicao;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (!sinoCondicao || sinoCondicao == null)
+            sinoCondicao = GameObject.FindGameObjectWithTag("Sino").GetComponent<Sino>();
+
+
         _alacancaAcionada = false;
         _playerColidindo = false;
     }
@@ -22,21 +29,24 @@ public class Portao : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_playerColidindo && !_alacancaAcionada && Input.GetKeyDown(KeyCode.P))
-        {
+        if(_playerColidindo && !_alacancaAcionada && Input.GetKeyDown(KeyCode.E) && sinoCondicao.IsRunning())// o isTimerOn da função IsRunning é true enquanto o timer do Sino estiver rodando  
+        {                                                                                                       // não é necessario colocar o textoCountdown.enabled aqui por que o         
+
             _alavanca.SetTrigger("Ligar");
             _portao1.SetTrigger("Abrir");
             _alacancaAcionada = true;
         }
     }
-    private void OnTriggerEnter(Collider other)// se entrou na tag o _playerColidindo fica true ??
+    private void OnTriggerEnter(Collider other)// quando entrou na tag o _playerColidindo fica true 
     {
         if (other.gameObject.CompareTag("Player"))
         {
             _playerColidindo = true;
+
+
         }
     }
-    private void onTriggerExit(Collider other)//se saiu na tag o _playerColidindo fica false???
+    private void onTriggerExit(Collider other)//quando saiu na tag o _playerColidindo fica false
     {
         if (other.gameObject.CompareTag("Player"))
         {

@@ -1,26 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using TMPro;
 
 public class Sino : MonoBehaviour
 {
     public TextMeshProUGUI textoCountdown;
 
     [SerializeField]
-    private float TempoDeBatidaInicial;
-
-    [SerializeField]
     private float TempoDebatidaMax;
 
-    
-    public bool isTimerOn = false;
-
-
+    private Timer timer;
 
     // Start is called before the first frame update
 
-    [SerializeField]
+   // [SerializeField]
     private float _tempoDoSom;
 
     public float TempoDoSom
@@ -38,42 +30,43 @@ public class Sino : MonoBehaviour
 
             _tempoDoSom = value;
             textoCountdown.text = TempoDoSom.ToString();//aqui tem q converter o TempoParaBatida para string pq o .text é do tipo string
-
-
         }
     }
-    void Start()
+
+    private void Start()
     {
-        TempoDoSom = 10;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Time.time >= TempoDeBatidaInicial + TempoDebatidaMax && isTimerOn)
+        if (timer != null)
         {
-
-            isTimerOn = false;
-            textoCountdown.enabled = false;
+            if (!timer.isDone)
+            {
+                TempoDoSom = timer.GetTimeRemaining(); //GetTimeRemaining diz quanto tempo falta para acaber 
+            }                                          //aqui salva no tempoDoSom para mostra o tempo nas propriedades e no texto
         }
-
-        if (isTimerOn)
-        {
-            TempoDoSom = Mathf.Abs((TempoDeBatidaInicial + TempoDebatidaMax) - Time.time);
-
-        }
-
     }
 
     public void iniciarCountdown()
     {
-        TempoDeBatidaInicial = Time.time;
-        isTimerOn = true;
+        // TempoDeBatidaInicial = Time.time;
+        if (timer != null)
+            timer.Cancel(); // se não tiver null, precisa cancelar o timer anterior
+
+        timer = Timer.Register(TempoDebatidaMax, desativarCountdown); // aqui cria o timer
+
         textoCountdown.enabled = true;
+    }
+
+    public void desativarCountdown()
+    {
+        textoCountdown.enabled = false;
     }
 
     public bool IsRunning()
     {
-        return isTimerOn;
+        return !timer.isDone;//aqui retorna true ou false dependendo do timer e da função iniciar coutdown
     }
 }
