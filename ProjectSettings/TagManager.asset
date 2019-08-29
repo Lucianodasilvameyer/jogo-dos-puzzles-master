@@ -9,6 +9,11 @@ TagManager:
   - BotaoSala
   - Portao
   - BaseAlavanca
+  - ParteControladora
+  - LadoDireito
+  - LadoEsquerdo
+  - LadoDeCima
+  - LadoDeBaixo
   layers:
   - Default
   - TransparentFX
