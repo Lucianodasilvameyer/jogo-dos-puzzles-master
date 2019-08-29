@@ -91,6 +91,7 @@ public class Player : MonoBehaviour
         }
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
         
@@ -100,12 +101,25 @@ public class Player : MonoBehaviour
             other.GetComponent<Sino>().iniciarCountdown();
             
         }
-     
+
+    
         //if (other.gameObject.CompareTag("BaseAlavanca")) //Sino.isTimerOn == true??
-       // {    
-          //  other.GetComponent<BaseAlavanca>().Activate();
+        // {    
+        //  other.GetComponent<BaseAlavanca>().Activate();
 
         //}
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Tile"))
+        {
+           // print(other.gameObject.GetComponent<Tile>().id);
+            if (Input.GetKeyDown(KeyCode.E) && other.gameObject.GetComponent<Tile>().IsMoving() == false)
+            {
+                other.gameObject.GetComponent<Tile>().Move();
+            }
+        }
     }
     
 }

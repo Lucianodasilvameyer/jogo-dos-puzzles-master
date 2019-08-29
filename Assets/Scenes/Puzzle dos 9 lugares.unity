@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 86591804}
   - component: {fileID: 86591803}
   - component: {fileID: 86591802}
-  - component: {fileID: 86591801}
   - component: {fileID: 86591805}
   m_Layer: 0
   m_Name: LadoEsquerdo
@@ -155,22 +154,6 @@ Transform:
   m_Father: {fileID: 1749004623}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &86591801
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 86591799}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &86591802
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -241,8 +224,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f22f3257a1b0f45a728970d00ec395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parte: {fileID: 0}
-  speed: 2
+  direcao: 0
+  timeToMove: 0
+  id: 0
+  isMoving: 0
+  tileInvisivel: {fileID: 0}
+  isInvisivel: 0
 --- !u!1 &124404519
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,11 +242,11 @@ GameObject:
   - component: {fileID: 124404523}
   - component: {fileID: 124404522}
   - component: {fileID: 124404521}
-  - component: {fileID: 124404524}
   - component: {fileID: 124404525}
+  - component: {fileID: 124404524}
   m_Layer: 0
   m_Name: Parte7
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,7 +276,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 2.9, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &124404522
 MeshRenderer:
@@ -347,10 +334,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &124404525
 MonoBehaviour:
@@ -364,8 +351,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f22f3257a1b0f45a728970d00ec395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parte: {fileID: 124404525}
-  speed: 2
+  direcao: 4
+  timeToMove: 1
+  id: 6
+  isMoving: 0
+  tileInvisivel: {fileID: 1749004627}
+  isInvisivel: 0
+--- !u!4 &229954475 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1298937305764483269, guid: 4afb2acc26d09f242b2e05c1799836bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1979790240}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &290712122
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,6 +374,7 @@ GameObject:
   - component: {fileID: 290712125}
   - component: {fileID: 290712124}
   - component: {fileID: 290712123}
+  - component: {fileID: 290712126}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -449,6 +447,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &290712126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290712122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 059cbbf4f0572d54cb135d2739232d7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 3
+  distanceFromTargetX: 0
+  distanceFromTargetY: 0
+  pitchMin: -40
+  pitchMax: 80
+  lockCursor: 0
+  rotationSmoothTime: 0.12
+  rotationSmoothVelocity: {x: 0, y: 0, z: 0}
+  target: {fileID: 229954475}
+  cameraLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &327289134
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +560,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &463494677
 GameObject:
@@ -552,7 +574,6 @@ GameObject:
   - component: {fileID: 463494682}
   - component: {fileID: 463494681}
   - component: {fileID: 463494680}
-  - component: {fileID: 463494679}
   - component: {fileID: 463494683}
   m_Layer: 0
   m_Name: LadoDireito
@@ -575,22 +596,6 @@ Transform:
   m_Father: {fileID: 1749004623}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &463494679
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 463494677}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &463494680
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -661,8 +666,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f22f3257a1b0f45a728970d00ec395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parte: {fileID: 0}
-  speed: 2
+  direcao: 0
+  timeToMove: 0
+  id: 0
+  isMoving: 0
+  tileInvisivel: {fileID: 0}
+  isInvisivel: 0
 --- !u!1 &606227873
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,7 +684,6 @@ GameObject:
   - component: {fileID: 606227876}
   - component: {fileID: 606227875}
   - component: {fileID: 606227874}
-  - component: {fileID: 606227879}
   - component: {fileID: 606227878}
   m_Layer: 0
   m_Name: Base
@@ -762,6 +770,7 @@ Transform:
   - {fileID: 2032146628}
   - {fileID: 124404520}
   - {fileID: 750548545}
+  - {fileID: 1749004623}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -778,22 +787,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &606227879
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 606227873}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &726818782
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,11 +799,11 @@ GameObject:
   - component: {fileID: 726818786}
   - component: {fileID: 726818785}
   - component: {fileID: 726818784}
-  - component: {fileID: 726818787}
   - component: {fileID: 726818788}
+  - component: {fileID: 726818787}
   m_Layer: 0
   m_Name: Parte4
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -840,7 +833,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 2.9, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &726818785
 MeshRenderer:
@@ -898,10 +891,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &726818788
 MonoBehaviour:
@@ -915,8 +908,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f22f3257a1b0f45a728970d00ec395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parte: {fileID: 726818788}
-  speed: 2
+  direcao: 4
+  timeToMove: 1
+  id: 3
+  isMoving: 0
+  tileInvisivel: {fileID: 1749004627}
+  isInvisivel: 0
 --- !u!1 &750548544
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,11 +926,11 @@ GameObject:
   - component: {fileID: 750548548}
   - component: {fileID: 750548547}
   - component: {fileID: 750548546}
-  - component: {fileID: 750548549}
   - component: {fileID: 750548550}
+  - component: {fileID: 750548549}
   m_Layer: 0
   m_Name: Parte8
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -946,7 +943,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750548544}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0109939575, y: 0.033950806, z: -2.8699987}
+  m_LocalPosition: {x: 0.02, y: -0, z: -2.8}
   m_LocalScale: {x: 2.6460145, y: 0.30164322, z: 2.6423945}
   m_Children: []
   m_Father: {fileID: 606227877}
@@ -963,7 +960,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 2.9, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &750548547
 MeshRenderer:
@@ -1021,10 +1018,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &750548550
 MonoBehaviour:
@@ -1038,8 +1035,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f22f3257a1b0f45a728970d00ec395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parte: {fileID: 750548550}
-  speed: 2
+  direcao: 3
+  timeToMove: 1
+  id: 7
+  isMoving: 0
+  tileInvisivel: {fileID: 1749004627}
+  isInvisivel: 0
+--- !u!1 &755713200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 755713202}
+  - component: {fileID: 755713201}
+  m_Layer: 0
+  m_Name: Game
+  m_TagString: Game
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &755713201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755713200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9789d8e470e3da747a1189ae400d9c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &755713202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755713200}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 16.475294, y: 10.590298, z: 52.031578}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1217671160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,11 +1096,11 @@ GameObject:
   - component: {fileID: 1217671164}
   - component: {fileID: 1217671163}
   - component: {fileID: 1217671162}
-  - component: {fileID: 1217671165}
   - component: {fileID: 1217671166}
+  - component: {fileID: 1217671165}
   m_Layer: 0
   m_Name: Parte2
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1086,7 +1130,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 2.9, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1217671163
 MeshRenderer:
@@ -1144,10 +1188,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &1217671166
 MonoBehaviour:
@@ -1161,8 +1205,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f22f3257a1b0f45a728970d00ec395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parte: {fileID: 1217671166}
-  speed: 2
+  direcao: 4
+  timeToMove: 1
+  id: 1
+  isMoving: 0
+  tileInvisivel: {fileID: 1749004627}
+  isInvisivel: 0
 --- !u!1 &1315532579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,11 +1223,11 @@ GameObject:
   - component: {fileID: 1315532583}
   - component: {fileID: 1315532582}
   - component: {fileID: 1315532581}
-  - component: {fileID: 1315532584}
   - component: {fileID: 1315532585}
+  - component: {fileID: 1315532584}
   m_Layer: 0
   m_Name: Parte3
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1209,7 +1257,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 2.9, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1315532582
 MeshRenderer:
@@ -1267,10 +1315,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &1315532585
 MonoBehaviour:
@@ -1284,8 +1332,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f22f3257a1b0f45a728970d00ec395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parte: {fileID: 1315532585}
-  speed: 2
+  direcao: 4
+  timeToMove: 1
+  id: 2
+  isMoving: 0
+  tileInvisivel: {fileID: 1749004627}
+  isInvisivel: 0
 --- !u!1 &1349717792
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,7 +1350,6 @@ GameObject:
   - component: {fileID: 1349717797}
   - component: {fileID: 1349717796}
   - component: {fileID: 1349717795}
-  - component: {fileID: 1349717794}
   - component: {fileID: 1349717798}
   m_Layer: 0
   m_Name: LadoDeCima
@@ -1321,22 +1372,6 @@ Transform:
   m_Father: {fileID: 1749004623}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1349717794
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349717792}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1349717795
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1407,8 +1442,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f22f3257a1b0f45a728970d00ec395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parte: {fileID: 0}
-  speed: 2
+  direcao: 0
+  timeToMove: 0
+  id: 0
+  isMoving: 0
+  tileInvisivel: {fileID: 0}
+  isInvisivel: 0
 --- !u!1 &1673178773
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,11 +1460,11 @@ GameObject:
   - component: {fileID: 1673178777}
   - component: {fileID: 1673178776}
   - component: {fileID: 1673178775}
-  - component: {fileID: 1673178778}
   - component: {fileID: 1673178779}
+  - component: {fileID: 1673178778}
   m_Layer: 0
   m_Name: Parte1
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1455,7 +1494,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 2.9, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1673178776
 MeshRenderer:
@@ -1513,10 +1552,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &1673178779
 MonoBehaviour:
@@ -1530,8 +1569,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f22f3257a1b0f45a728970d00ec395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parte: {fileID: 1673178779}
-  speed: 2
+  direcao: 4
+  timeToMove: 1
+  id: 0
+  isMoving: 0
+  tileInvisivel: {fileID: 1749004627}
+  isInvisivel: 0
 --- !u!1 &1749004622
 GameObject:
   m_ObjectHideFlags: 0
@@ -1547,7 +1590,7 @@ GameObject:
   - component: {fileID: 1749004627}
   - component: {fileID: 1749004628}
   m_Layer: 0
-  m_Name: ParteControladora
+  m_Name: Parte9
   m_TagString: ParteControladora
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1561,15 +1604,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1749004622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.25, y: 10.45, z: 48.07062}
+  m_LocalPosition: {x: 2.8009949, y: 0.17786312, z: -2.869999}
   m_LocalScale: {x: 2.6460145, y: 0.30164322, z: 2.6423945}
   m_Children:
   - {fileID: 463494678}
   - {fileID: 86591800}
   - {fileID: 1349717793}
   - {fileID: 2119883568}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 606227877}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1749004624
 BoxCollider:
@@ -1591,7 +1634,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1749004622}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1629,7 +1672,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1749004622}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &1749004627
+--- !u!114 &1749004627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749004622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f22f3257a1b0f45a728970d00ec395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direcao: 4
+  timeToMove: 0
+  id: 8
+  isMoving: 0
+  tileInvisivel: {fileID: 1749004627}
+  isInvisivel: 1
+--- !u!54 &1749004628
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1640,23 +1701,11 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &1749004628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1749004622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ad967f6b08ca704bb52d9cb063c8515, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1872773287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1669,11 +1718,11 @@ GameObject:
   - component: {fileID: 1872773291}
   - component: {fileID: 1872773290}
   - component: {fileID: 1872773289}
-  - component: {fileID: 1872773292}
   - component: {fileID: 1872773293}
+  - component: {fileID: 1872773292}
   m_Layer: 0
   m_Name: Parte5
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1703,7 +1752,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 2.9, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1872773290
 MeshRenderer:
@@ -1761,10 +1810,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &1872773293
 MonoBehaviour:
@@ -1778,8 +1827,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f22f3257a1b0f45a728970d00ec395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parte: {fileID: 1872773293}
-  speed: 2
+  direcao: 4
+  timeToMove: 1
+  id: 4
+  isMoving: 0
+  tileInvisivel: {fileID: 1749004627}
+  isInvisivel: 0
+--- !u!1001 &1979790240
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1298937305782888646, guid: 4afb2acc26d09f242b2e05c1799836bc,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298937305782888640, guid: 4afb2acc26d09f242b2e05c1799836bc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.429527
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298937305782888640, guid: 4afb2acc26d09f242b2e05c1799836bc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298937305782888640, guid: 4afb2acc26d09f242b2e05c1799836bc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 47.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298937305782888640, guid: 4afb2acc26d09f242b2e05c1799836bc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298937305782888640, guid: 4afb2acc26d09f242b2e05c1799836bc,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298937305782888640, guid: 4afb2acc26d09f242b2e05c1799836bc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298937305782888640, guid: 4afb2acc26d09f242b2e05c1799836bc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298937305782888640, guid: 4afb2acc26d09f242b2e05c1799836bc,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298937305782888640, guid: 4afb2acc26d09f242b2e05c1799836bc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298937305782888640, guid: 4afb2acc26d09f242b2e05c1799836bc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298937305782888640, guid: 4afb2acc26d09f242b2e05c1799836bc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298937305782888645, guid: 4afb2acc26d09f242b2e05c1799836bc,
+        type: 3}
+      propertyPath: cameraT
+      value: 
+      objectReference: {fileID: 290712125}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4afb2acc26d09f242b2e05c1799836bc, type: 3}
 --- !u!1 &2032146627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,11 +1919,11 @@ GameObject:
   - component: {fileID: 2032146631}
   - component: {fileID: 2032146630}
   - component: {fileID: 2032146629}
-  - component: {fileID: 2032146632}
   - component: {fileID: 2032146633}
+  - component: {fileID: 2032146632}
   m_Layer: 0
   m_Name: Parte6
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1809,7 +1936,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032146627}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.74, y: 0.033950806, z: -0.18}
+  m_LocalPosition: {x: 2.75, y: 0.033950806, z: -0.13}
   m_LocalScale: {x: 2.6460145, y: 0.30164322, z: 2.6423945}
   m_Children: []
   m_Father: {fileID: 606227877}
@@ -1826,7 +1953,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 2.9, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2032146630
 MeshRenderer:
@@ -1884,10 +2011,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &2032146633
 MonoBehaviour:
@@ -1901,8 +2028,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f22f3257a1b0f45a728970d00ec395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parte: {fileID: 2032146633}
-  speed: 2
+  direcao: 1
+  timeToMove: 1
+  id: 5
+  isMoving: 0
+  tileInvisivel: {fileID: 1749004627}
+  isInvisivel: 0
 --- !u!1 &2119883567
 GameObject:
   m_ObjectHideFlags: 0
@@ -1915,7 +2046,6 @@ GameObject:
   - component: {fileID: 2119883572}
   - component: {fileID: 2119883571}
   - component: {fileID: 2119883570}
-  - component: {fileID: 2119883569}
   - component: {fileID: 2119883573}
   m_Layer: 0
   m_Name: LadoDeBaixo
@@ -1938,22 +2068,6 @@ Transform:
   m_Father: {fileID: 1749004623}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &2119883569
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119883567}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &2119883570
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1962,7 +2076,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2119883567}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -2024,5 +2138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81f22f3257a1b0f45a728970d00ec395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parte: {fileID: 0}
-  speed: 2
+  direcao: 0
+  timeToMove: 0
+  id: 0
+  isMoving: 0
+  tileInvisivel: {fileID: 0}
+  isInvisivel: 0
