@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float runSpeed;
     public float speed;
     public float gravity;
+    public float jumpHeight;
 
     [SerializeField]
     private float smoothSpeedTime;
@@ -38,11 +39,15 @@ public class Player : MonoBehaviour
     [SerializeField]
     Sino sino_ref;
 
+    [SerializeField]
+    Animator animator;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
 
         if (!game_ref || game_ref == null)
             game_ref = GameObject.FindGameObjectWithTag("Game").GetComponent<Game>();
@@ -55,6 +60,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         AndarComRotacao();
+        Jump();
     }
     void AndarComRotacao()
     {
@@ -121,5 +127,24 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
+    void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+
+            if (charController.isGrounded)
+            {
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Animations"))
+                {
+                    animator.Play("Jump up");
+                }
+                float jumpVelocity = Mathf.Sqrt(-2 * gravity * jumpHeight);
+                velocityY = jumpVelocity;
+            }
+
+        }
+
+    }
+
 }
