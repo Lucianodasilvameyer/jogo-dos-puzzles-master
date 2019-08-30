@@ -15,6 +15,7 @@ TagManager:
   - LadoDeCima
   - LadoDeBaixo
   - Tile
+  - Portal
   layers:
   - Default
   - TransparentFX

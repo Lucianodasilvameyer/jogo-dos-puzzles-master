@@ -92,12 +92,12 @@ public class Tile : MonoBehaviour
         switch (direcao)
         {
             case Direcoes.Cima:
-                direction = new Vector3(0, 0, -1f);
+                direction = new Vector3(0, 0, 1f);//aqui o vector ja é a ordem para se mover
                 useHeight = true;
                 break;
 
             case Direcoes.Baixo:
-                direction = new Vector3(0, 0, 1f);
+                direction = new Vector3(0, 0, -1f);
                 useHeight = true;
                 break;
 
@@ -110,14 +110,15 @@ public class Tile : MonoBehaviour
                 break;
         }
 
-        direction = direction.normalized;
+        direction = transform.InverseTransformDirection(direction.normalized);
+        
 
         float distanceToMove = 0;
 
         if (useHeight)
-            distanceToMove = GetComponent<MeshRenderer>().bounds.size.y;
+            distanceToMove = GetComponent<BoxCollider>().bounds.size.z;
         else
-            distanceToMove = GetComponent<MeshRenderer>().bounds.size.x;
+            distanceToMove = GetComponent<BoxCollider>().bounds.size.x;
 
         transform.DOMove(transform.position + direction * distanceToMove, timeToMove).OnComplete(() => setIsMoving(false));
         //transform.DOMove é o comando que passa aonde quer chegar em tanto tempo

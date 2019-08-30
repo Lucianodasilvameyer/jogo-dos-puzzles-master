@@ -4,29 +4,27 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    [SerializeField]
-    Player player_ref;
+
 
     [SerializeField]
-    Vector3 Destino;
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (!player_ref || player_ref == null)
-            player_ref = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();    
-           
-    }
+    Transform destino;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") )
         {
-            //player_ref.transform.position=Destino+Destino.foward*
+            other.transform.position = destino.position;
+            other.GetComponent<Player>().setTeleportando(true);
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+           other.GetComponent<Player>().setTeleportando(false);
+        }
+    }
+
+
 }

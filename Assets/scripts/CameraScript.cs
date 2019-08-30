@@ -6,9 +6,9 @@ public class CameraScript : MonoBehaviour
 {
 
 
-    
+    [SerializeField]
     float yaw;
-   
+    [SerializeField]
     float pitch;
 
     
@@ -49,10 +49,16 @@ public class CameraScript : MonoBehaviour
     [SerializeField]
     LayerMask cameraLayerMask;
 
+    [SerializeField]
+    Player player_ref;
+
+    string axisX, axisY;
+
     // Use this for initialization
     void Start()
     {
-
+        if (!player_ref || player_ref == null)
+            player_ref = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         //caso lockCursor seja true
         if (lockCursor)
         {
@@ -62,6 +68,19 @@ public class CameraScript : MonoBehaviour
             
             Cursor.visible = false;
         }
+
+        if (!player_ref.isUsingJoystick())
+        {
+            axisX = "Mouse X";
+            axisY = "Mouse Y";
+        }
+        else
+        {
+            axisX = "Right Stick X";
+            axisY = "Right Stick Y";
+          
+        }
+
 
 
     }
@@ -73,8 +92,9 @@ public class CameraScript : MonoBehaviour
 
 
         
-        yaw += Input.GetAxis("Mouse X") * mouseSensitivity;
-        pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+       
+        yaw += Input.GetAxis(axisX) * mouseSensitivity;
+        pitch -= Input.GetAxis(axisY) * mouseSensitivity;
 
         
         pitch = Mathf.Clamp(pitch, pitchMin, pitchMax);
