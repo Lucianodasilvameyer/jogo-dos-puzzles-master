@@ -168,7 +168,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Tile"))
         {
            // print(other.gameObject.GetComponent<Tile>().id);
-            if (Input.GetKeyDown(KeyCode.E) && other.gameObject.GetComponent<Tile>().IsMoving() == false)
+            if (Input.GetKeyDown(KeyCode.E) && other.gameObject.GetComponent<Tile>().IsMoving() == false)//aqui em  vez de usar o IsMoving() == false eu não poderia usar setIsMoving(false)? assim o isMoving tambem iria para false?
             {
                 other.gameObject.GetComponent<Tile>().Move();
             }
