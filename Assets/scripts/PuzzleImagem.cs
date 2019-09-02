@@ -5,25 +5,30 @@ using UnityEngine;
 public class PuzzleImagem : MonoBehaviour
 {
     [SerializeField]
-    private Tile[] tiles;
-
-
+    public Tile[,] tiles;
 
     // Start is called before the first frame update
     private void Start()
     {
         GameObject[] tilesGO = GameObject.FindGameObjectsWithTag("Tile");
+        List<GameObject> tilesGoList = tilesGO.ToList();
 
-        tiles = new Tile[tilesGO.Length];
+        tiles = new Tile[3, 3];
 
-        for (int i = 0; i < tilesGO.Length; i++)
+        for (int i = 0; i < tiles.GetLength(0); i++)
         {
-            tiles[i] = tilesGO[i].GetComponent<Tile>();
+            for (int j = 0; j < tiles.GetLength(1); j++)
+            {
+                if (tilesGoList.Any())
+                {
+                    tiles[i, j] = tilesGoList.Last().GetComponent<Tile>();
+                    tilesGoList.Remove(tilesGoList.Last());
+                }
+            }
         }
 
-        
-
-    shuffle();
+        shuffle();
+        ReposicionarTiles();
     }
 
     // Update is called once per frame
@@ -33,24 +38,72 @@ public class PuzzleImagem : MonoBehaviour
 
     public void shuffle()
     {
+        Tile[,] tilesCopia = (Tile[,])tiles.Clone();
 
-         
-  List<Vector3> tilesCopia;
-    tilesCopia = tiles.Select(x => x.GetComponent<Transform>().position).ToList();
-        Utilities.Shuffle<Vector3>(tilesCopia);
+        Utilities.Shuffle<Tile>(tilesCopia);
 
-        for (int i = 0; i < tiles.Length; i++)
+        for (int i = 0; i < tiles.GetLength(0); i++)
         {
-            if(tilesCopia != null)
+            for (int j = 0; j < tiles.GetLength(1); j++)
             {
-                if (tilesCopia.Any())
+                if (tilesCopia != null)
                 {
-                    print("entrou");
-                    tiles[i].transform.position = tilesCopia.Last();
-                    tilesCopia.Remove(tilesCopia.Last());
+                    if (tilesCopia.Length > 0)
+                    {
+                     
+                        tiles[i, j].transform.position = tilesCopia[i, j].transform.position;
+                    }
                 }
             }
-           
         }
+    }
+
+    private void ReposicionarTiles()
+    {
+        for (int i = 0; i < tiles.GetLength(0); i++)
+        {
+            for (int j = 0; j < tiles.GetLength(1); j++)
+            {
+                Vector3 pos = Vector3.zero;
+                pos.x += (i - 1) * tiles[i, j].transform.localScale.x;
+                pos.z += (j - 1) * -1 * tiles[i, j].transform.localScale.z;
+                
+                tiles[i, j].transform.localPosition = pos;
+                tiles[i,j].gameObject.name = "Tile(" + i + ", " + j +  ")";
+            }
+        }
+    }
+
+
+    public bool isPuzzleComplete()
+    {
+        int idCheck = 0;
+
+        for (int i = 0; i < tiles.GetLength(0); i++)
+        {
+            for (int j = 0; j < tiles.GetLength(1); j++)
+            {
+
+                if (tiles[i, j].id != idCheck)
+                {
+                    return false;
+                }
+                else
+                {
+                    idCheck++;
+                }
+
+            }
+        }
+        return true;
+    }
+
+    public bool isAnyMoving()
+    {
+        foreach(Tile t in tiles)
+        {
+            if (t.IsMoving() == true) return true;
+        }
+        return false;
     }
 }

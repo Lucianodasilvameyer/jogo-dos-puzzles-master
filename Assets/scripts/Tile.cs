@@ -22,6 +22,8 @@ public class Tile : MonoBehaviour
      */
 
     [SerializeField]
+    PuzzleImagem puzzleImagem_ref;
+    [SerializeField]
     private Direcoes direcao;//o ? significa q pode receber null
 
     [SerializeField]
@@ -41,8 +43,12 @@ public class Tile : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-      //  direcao = Direcoes.Nenhuma;//aqui o null serve para dizer q não tem nenhum valor ,neste caso nenhuma direção para ir
+        //  direcao = Direcoes.Nenhuma;//aqui o null serve para dizer q não tem nenhum valor ,neste caso nenhuma direção para ir
+        if(!puzzleImagem_ref || puzzleImagem_ref == null)
+         puzzleImagem_ref = Utilities.getReference<PuzzleImagem>("PuzzleImagem");
+
     }
+
 
     // Update is called once per frame
     private void Update()
@@ -84,7 +90,7 @@ public class Tile : MonoBehaviour
 
     public void Move() //aqui a sem parametro vai para a posição q tem q ir
     {
-        if (direcao == Direcoes.Nenhuma || isMoving == true)
+        if (direcao == Direcoes.Nenhuma || puzzleImagem_ref.isAnyMoving() == true)
             return;
 
         Vector3 direction = Vector3.zero;//pode não entrar pq o valor pode ser null       //aqui para informar o null de nenhuma direção para ir eu poderia colocar dentro do switch...**
@@ -125,6 +131,7 @@ public class Tile : MonoBehaviour
         else
             distanceToMove = GetComponent<BoxCollider>().bounds.size.x;
 
+        
         transform.DOMove(transform.position + direction * distanceToMove, timeToMove).OnComplete(() => setIsMoving(false)); //Delegado usado pelo retorno de chamada completado por Lightmapping.com?
         //transform.DOMove é o comando que passa aonde quer chegar em tanto tempo                                           // o que seria um delegado?
         //transform.position é a posição atual                                                                              //o que seria um retorno de chamada completado por Lightmapping.com?
@@ -134,11 +141,37 @@ public class Tile : MonoBehaviour
 
         setIsMoving(true);//?
 
-        if(!isInvisivel && tileInvisivel.IsMoving() == false)// não poderia usar setIsMoving(false) em vez do IsMoving() == false
-        {                                                    //se o isInvisivel esta como false significa q aqui estaria trabalhando outra vez com o tile visivel?
-            print("Moveu Invisivel");
-            tileInvisivel.transform.DOMove(tileInvisivel.transform.position + (direction * -1) * distanceToMove , timeToMove).OnComplete(() => tileInvisivel.setIsMoving(false));
+        if(!isInvisivel && tileInvisivel.IsMoving() == false)//aqui se usa a função isMoving para só checar se esta se movimentando ou não 
+        {                                                    //aqui só o tile visivel pode mexer ele e o invisivel
+            
+            tileInvisivel.transform.DOMove(tileInvisivel.transform.position + (direction * -1) * distanceToMove, timeToMove).OnComplete(() => { tileInvisivel.setIsMoving(false);// o OnComplete(() => { tileInvisivel.setIsMoving(false) serve para dizer q terminou o movimento
+                print( "Completou? " +   puzzleImagem_ref.isPuzzleComplete());
+            });
+
             tileInvisivel.setIsMoving(true);
+
+
+            // trocando os tiles de lugar na matriz
+
+            //primeiro acha os indices
+            int[] indexesA = new int[2], indexesB = new int[2];
+            indexesA = Utilities.findIndex(puzzleImagem_ref.tiles, this);
+            indexesB = Utilities.findIndex(puzzleImagem_ref.tiles, tileInvisivel);
+            
+            //caso os indices sejam válidos, troca os tiles eles de lugar na matriz
+            if(indexesA[0] >= 0 && indexesA[1] >= 0 && indexesB[0] >= 0 && indexesB[1] >= 0)
+            {
+                Tile aux = puzzleImagem_ref.tiles[indexesA[0], indexesA[1]];
+               
+                puzzleImagem_ref.tiles[indexesA[0], indexesA[1]] = puzzleImagem_ref.tiles[indexesB[0], indexesB[1]];
+                puzzleImagem_ref.tiles[indexesA[0], indexesA[1]].name = "Tile(" + indexesA[0] + ", " + indexesA[1] + ")";
+                puzzleImagem_ref.tiles[indexesB[0], indexesB[1]] = aux;
+                puzzleImagem_ref.tiles[indexesB[0], indexesB[1]].name = "Tile(" + indexesB[0] + ", " + indexesB[1] + ")";
+
+
+            }
+
+
         }
         
 

@@ -16,6 +16,7 @@ TagManager:
   - LadoDeBaixo
   - Tile
   - Portal
+  - PuzzleImagem
   layers:
   - Default
   - TransparentFX
