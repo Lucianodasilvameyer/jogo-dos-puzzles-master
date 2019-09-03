@@ -58,6 +58,7 @@ public class Tile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.CompareTag("LadoDeCima"))
         {
             direcao = Direcoes.Baixo; //aqui manda entrar no switch da direção? no Direcoes.Baixo? 
@@ -88,7 +89,9 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void Move() //aqui a sem parametro vai para a posição q tem q ir
+
+
+        public void Move() //aqui a sem parametro vai para a posição q tem q ir
     {
         if (direcao == Direcoes.Nenhuma || puzzleImagem_ref.isAnyMoving() == true)
             return;

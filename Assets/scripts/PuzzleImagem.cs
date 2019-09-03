@@ -7,6 +7,9 @@ public class PuzzleImagem : MonoBehaviour
     [SerializeField]
     public Tile[,] tiles;
 
+    [SerializeField]
+    private bool modoFacil;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -17,7 +20,7 @@ public class PuzzleImagem : MonoBehaviour
 
         for (int i = 0; i < tiles.GetLength(0); i++)
         {
-            for (int j = 0; j < tiles.GetLength(1); j++)
+            for (int j = 0; j < tiles.GetLength(1); j++)// GetLength retorna o tamanho de linhas e colunas separado
             {
                 if (tilesGoList.Any())
                 {
@@ -27,7 +30,9 @@ public class PuzzleImagem : MonoBehaviour
             }
         }
 
-        shuffle();
+        if (modoFacil) setUpfacil();
+        else shuffle();
+
         ReposicionarTiles();
     }
 
@@ -50,7 +55,6 @@ public class PuzzleImagem : MonoBehaviour
                 {
                     if (tilesCopia.Length > 0)
                     {
-                     
                         tiles[i, j].transform.position = tilesCopia[i, j].transform.position;
                     }
                 }
@@ -67,32 +71,27 @@ public class PuzzleImagem : MonoBehaviour
                 Vector3 pos = Vector3.zero;
                 pos.x += (i - 1) * tiles[i, j].transform.localScale.x;
                 pos.z += (j - 1) * -1 * tiles[i, j].transform.localScale.z;
-                
+
                 tiles[i, j].transform.localPosition = pos;
-                tiles[i,j].gameObject.name = "Tile(" + i + ", " + j +  ")";
+                tiles[i, j].gameObject.name = "Tile(" + i + ", " + j + ")";
             }
         }
     }
-
 
     public bool isPuzzleComplete()
     {
         int idCheck = 0;
 
-        for (int i = 0; i < tiles.GetLength(0); i++)
+        for (int j = 0; j < tiles.GetLength(1); j++)
         {
-            for (int j = 0; j < tiles.GetLength(1); j++)
+            for (int i = 0; i < tiles.GetLength(0); i++)
             {
-
-                if (tiles[i, j].id != idCheck)
+                if (tiles[i, j].id != idCheck++)//aqui verifica e depois soma
                 {
+                    
+
                     return false;
                 }
-                else
-                {
-                    idCheck++;
-                }
-
             }
         }
         return true;
@@ -100,10 +99,38 @@ public class PuzzleImagem : MonoBehaviour
 
     public bool isAnyMoving()
     {
-        foreach(Tile t in tiles)
+        foreach (Tile t in tiles)
         {
             if (t.IsMoving() == true) return true;
         }
         return false;
+    }
+
+    public void setUpfacil()
+    {
+        GameObject[] tilesGO = GameObject.FindGameObjectsWithTag("Tile");
+        List<GameObject> tilesGoList = tilesGO.ToList();
+        int IDcheck = 0;
+
+        for (int i = 0; i < tiles.GetLength(0); i++)
+        {
+            for (int j = 0; j < tiles.GetLength(1); j++)
+            {
+                int index = 0;
+                if (i == 2 && j == 1)
+                {
+                    index = tilesGoList.FindIndex(x => x.GetComponent<Tile>().id == 8);
+                }
+                else if (i == 2 && j == 2)
+                {
+                    index = tilesGoList.FindIndex(x => x.GetComponent<Tile>().id == 7);
+                }
+                else
+                    index = tilesGoList.FindIndex(x => x.GetComponent<Tile>().id == IDcheck++);
+
+                tiles[j, i] = tilesGoList[index].GetComponent<Tile>();
+                tilesGoList.RemoveAt(index);
+            }
+        }
     }
 }
