@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public static class Utilities
+public static class Utilities  //esta parte serve para embaralhar arrays
 {
-    public static void Shuffle<T>(T[] array)
+    public static void Shuffle<T>(T[] array) //aqui tem uma dimensão(verificar a virgula dentro dos conchetes)
     {
 
         System.Random rng = new System.Random();
@@ -19,7 +19,7 @@ public static class Utilities
         }
     }
 
-    public static void Shuffle<T>(T[,] array)
+    public static void Shuffle<T>(T[,] array)//aqui tem duas dimensões
     {
 
         System.Random random = new System.Random();

@@ -9,10 +9,12 @@ public class Sino : MonoBehaviour
     private float TempoDebatidaMax;
 
     private Timer timer;
+    [SerializeField]
+    Alavanca alavanca;
 
     // Start is called before the first frame update
 
-   // [SerializeField]
+    // [SerializeField]
     private float _tempoDoSom;
 
     public float TempoDoSom
@@ -58,11 +60,15 @@ public class Sino : MonoBehaviour
         timer = Timer.Register(TempoDebatidaMax, desativarCountdown); // aqui cria o timer
 
         textoCountdown.enabled = true;
+        alavanca.destravar(true);
+
+
     }
 
     public void desativarCountdown()
     {
         textoCountdown.enabled = false;
+        alavanca.destravar(false);
     }
 
     public bool IsRunning()

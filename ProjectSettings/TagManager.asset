@@ -17,6 +17,8 @@ TagManager:
   - Tile
   - Portal
   - PuzzleImagem
+  - "PortalEntrarJogoPeda\u7BF3"
+  - "PortalSairJogoDosPeda\u7BF3"
   layers:
   - Default
   - TransparentFX

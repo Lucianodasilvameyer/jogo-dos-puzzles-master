@@ -93,7 +93,7 @@ public class Tile : MonoBehaviour
 
         public void Move() //aqui a sem parametro vai para a posição q tem q ir
     {
-        if (direcao == Direcoes.Nenhuma || puzzleImagem_ref.isAnyMoving() == true)
+        if (direcao == Direcoes.Nenhuma || puzzleImagem_ref.isAnyMoving() == true || puzzleImagem_ref.isPuzzleComplete())
             return;
 
         Vector3 direction = Vector3.zero;//pode não entrar pq o valor pode ser null       //aqui para informar o null de nenhuma direção para ir eu poderia colocar dentro do switch...**
@@ -186,7 +186,7 @@ public class Tile : MonoBehaviour
 
     void Move(Direcoes? dir)//aqui a com parametro vai para a possição q se quer
     {
-        if (dir == null)
+        if (direcao == Direcoes.Nenhuma || puzzleImagem_ref.isAnyMoving() == true || puzzleImagem_ref.isPuzzleComplete() || dir == null || dir == Direcoes.Nenhuma)
             return;
 
         Vector3 direction = Vector3.zero;//pode não entrar pq o valor pode ser null

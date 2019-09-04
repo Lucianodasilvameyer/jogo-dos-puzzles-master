@@ -10,6 +10,10 @@ public class PuzzleImagem : MonoBehaviour    //aonde este script foi arrastado?
     [SerializeField]
     private bool modoFacil;
 
+    [SerializeField]
+    Alavanca alavanca;
+
+    bool isComplete = false;
     // Start is called before the first frame update
     private void Start()
     {                                       //esta parte abaixo serve para criar uma lista com a localização de cada tile?
@@ -45,9 +49,9 @@ public class PuzzleImagem : MonoBehaviour    //aonde este script foi arrastado?
     {
         Tile[,] tilesCopia = (Tile[,])tiles.Clone(); // aqui fez um clone do array Tile[,])tiles? 
 
-        Utilities.Shuffle<Tile>(tilesCopia);
+        Utilities.Shuffle<Tile>(tiles);
 
-        for (int i = 0; i < tiles.GetLength(0); i++)
+        /*for (int i = 0; i < tiles.GetLength(0); i++)
         {
             for (int j = 0; j < tiles.GetLength(1); j++)
             {
@@ -59,7 +63,7 @@ public class PuzzleImagem : MonoBehaviour    //aonde este script foi arrastado?
                     }
                 }
             }
-        }
+        }*/
     }
 
     private void ReposicionarTiles()
@@ -82,19 +86,24 @@ public class PuzzleImagem : MonoBehaviour    //aonde este script foi arrastado?
     {
         int idCheck = 0;
 
+        if (isComplete) return true;
+
         for (int j = 0; j < tiles.GetLength(1); j++)
         {
             for (int i = 0; i < tiles.GetLength(0); i++)
             {
                 if (tiles[i, j].id != idCheck++)//aqui verifica e depois soma
                 {
-                    
 
-                    return false;
+                    isComplete = false;
+                    return isComplete;
                 }
             }
         }
-        return true;
+
+        alavanca.destravar(true);
+        isComplete = true;
+        return isComplete;
     }
 
     public bool isAnyMoving()
