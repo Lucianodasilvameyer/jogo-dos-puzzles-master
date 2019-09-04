@@ -107,7 +107,6 @@ public class Tile : MonoBehaviour
 
             case Direcoes.Baixo:
                 direction = new Vector3(0, 0, -1f);//nestes exemplos só esta indicando posições no espaço e não direções de onde tem que ir?
-                useHeight = true;
                 break;
 
             case Direcoes.Direita:

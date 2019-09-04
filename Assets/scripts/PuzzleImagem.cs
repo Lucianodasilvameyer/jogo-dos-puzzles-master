@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class PuzzleImagem : MonoBehaviour
+public class PuzzleImagem : MonoBehaviour    //aonde este script foi arrastado?
 {
     [SerializeField]
     public Tile[,] tiles;
@@ -12,21 +12,21 @@ public class PuzzleImagem : MonoBehaviour
 
     // Start is called before the first frame update
     private void Start()
-    {
-        GameObject[] tilesGO = GameObject.FindGameObjectsWithTag("Tile");
-        List<GameObject> tilesGoList = tilesGO.ToList();
-
+    {                                       //esta parte abaixo serve para criar uma lista com a localização de cada tile?
+        GameObject[] tilesGO = GameObject.FindGameObjectsWithTag("Tile");//aqui acha todos os GameObjects com a tag tile?
+        List<GameObject> tilesGoList = tilesGO.ToList(); //aqui passa os gameObjects com a tag tile para uma lista de objetos?
+                                               //em seguida é necessario transformar esses objetos em posições da matriz?
         tiles = new Tile[3, 3];
 
         for (int i = 0; i < tiles.GetLength(0); i++)
         {
             for (int j = 0; j < tiles.GetLength(1); j++)// GetLength retorna o tamanho de linhas e colunas separado
             {
-                if (tilesGoList.Any())
+                if (tilesGoList.Any())//entra neste if se tiver qualquer elemento na lista?
                 {
-                    tiles[i, j] = tilesGoList.Last().GetComponent<Tile>();
+                    tiles[i, j] = tilesGoList.Last().GetComponent<Tile>();// agora que tem as coordenadas falta colocar dentro da matriz tiles[i,j]?
                     tilesGoList.Remove(tilesGoList.Last());
-                }
+                }                                     //agora a matriz tiles esta com todos os elementos?  
             }
         }
 
@@ -43,7 +43,7 @@ public class PuzzleImagem : MonoBehaviour
 
     public void shuffle()
     {
-        Tile[,] tilesCopia = (Tile[,])tiles.Clone();
+        Tile[,] tilesCopia = (Tile[,])tiles.Clone(); // aqui fez um clone do array Tile[,])tiles? 
 
         Utilities.Shuffle<Tile>(tilesCopia);
 
@@ -78,7 +78,7 @@ public class PuzzleImagem : MonoBehaviour
         }
     }
 
-    public bool isPuzzleComplete()
+    public bool isPuzzleComplete()//esta função deveria ir dentro do update?
     {
         int idCheck = 0;
 
