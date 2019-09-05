@@ -5,10 +5,43 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
+    
     public float walkSpeed;
     public float runSpeed;
     public float speed;
     public float gravity;
+    public float gravityInicial;
+    [SerializeField]
+    bool useGravity_;
+  
+    public bool useGravity //sempre q a variavel mudar e for necessario realizar mais coisas é melhor usar propriedade
+    {
+        get
+        {
+            return useGravity_;
+        }
+        set
+        {
+
+            useGravity_ = value;
+
+            if(useGravity_)
+            {
+                gravity = gravityInicial;
+            }
+            else
+            {
+                gravity = 0;
+
+            }
+        }
+    }
+    [SerializeField]
+    Vector3 externalMovement;
+    [SerializeField]
+    Vector3 externalMovementDelta;
+    [SerializeField]
+    Plataforma plataforma;
     public float jumpHeight;
 
     [SerializeField]
@@ -52,6 +85,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        plataforma = null;
+        externalMovement = Vector3.zero;
         animator = GetComponent<Animator>();
         cameraT = Camera.main.transform;
 
@@ -104,6 +140,7 @@ public class Player : MonoBehaviour
 
         //aumentando a aceleração da gravidade
         velocityY += gravity * Time.deltaTime;
+        
 
         // aqui calculamos o vetor de movimentação total (direções e intesindades)
         // a primeira parte é para mover o personagem para frente (transform.foward) na intensidade speed (novamente multiplicado pelo inputDir.magnitude para impedir a movimentação quando não há teclas pressionadas
@@ -112,10 +149,25 @@ public class Player : MonoBehaviour
 
         //aqui efetuamos a movimentação chamando o método Move do Character controller
         // Na função passamos o vetor de movimentação (multiplicamos por Time.deltaTime pois como estamos na função Update, queremos mover o personagem só a quantidade necessário baseado no último frame)
-        if(!teleportando)
-        charController.Move(velocity * Time.deltaTime);//aqui so quando o teleportando for 
 
+        if(plataforma != null)
+        {
+            externalMovement = plataforma.deltaMovement;
+            externalMovementDelta = externalMovement * Time.deltaTime;
+            
+                // tentar verificar se o external movement deixará o player muito longe da plataforma, e diminuir esse movement o tanto necessário
+            
+        }
+        else
+        {
+            externalMovement = Vector3.zero;
+            externalMovementDelta = externalMovement * Time.deltaTime;
+        }
 
+        if(!teleportando && (velocity + externalMovement)  != Vector3.zero)
+        charController.Move((velocity + externalMovement) * Time.deltaTime );//aqui so quando o teleportando for 
+
+       
 
 
         //aqui atualizamos a velociade inicial com a velocidade interna do character controller que é mais precisa
@@ -143,6 +195,20 @@ public class Player : MonoBehaviour
         return useJoystick;
     }
 
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        
+        if (hit.gameObject.CompareTag("Plataforma"))
+        {
+            print("colisão");
+            plataforma = hit.transform.GetComponent<Plataforma>();
+            useGravity = false;                                                                //transform.parent é o transform do pai
+            velocityY = 0;
+        }
+            
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         
@@ -152,15 +218,36 @@ public class Player : MonoBehaviour
             other.GetComponent<Sino>().iniciarCountdown();
             
         }
+        if (other.gameObject.CompareTag("Player"))
+        {                                                           //aqui o pai vira a plataforma
+
+            print("entrou");
+            plataforma = other.transform.parent.GetComponent<Plataforma>();
+            useGravity = false;                                                                //transform.parent é o transform do pai
+            velocityY = 0;
+        }
+                                                                      //o other.gameObject.transform.parent dis que é o pai da plataforma
 
 
 
-    
+
         //if (other.gameObject.CompareTag("BaseAlavanca")) //Sino.isTimerOn == true??
         // {    
         //  other.GetComponent<BaseAlavanca>().Activate();
 
         //}
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("plataformaTrigger"))
+        {
+            print("saída");
+            //aqui o pai vira a plataforma
+            plataforma = null;
+            externalMovement = Vector3.zero;
+            useGravity = true;                                                                //transform.parent é o transform do pai
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -179,16 +266,30 @@ public class Player : MonoBehaviour
         if (Input.GetAxisRaw("Jump") == 1)
         {
 
-
-            if (charController.isGrounded)
+            if (charController.isGrounded || plataforma != null)
             {
             
-                float jumpVelocity = Mathf.Sqrt(-2 * gravity * jumpHeight);
+                float jumpVelocity = Mathf.Sqrt(-2 * gravityInicial * jumpHeight);
                 velocityY = jumpVelocity;
             }
 
         }
 
+    }
+
+    float getHeightDistanceFromPlatform(Plataforma p, Vector3 point)
+    {
+        float result = -8000;
+        if (p != null)
+        {
+
+            Vector3 highestPoint = plataforma.GetComponent<BoxCollider>().bounds.center;
+            highestPoint.y += plataforma.GetComponent<BoxCollider>().bounds.size.y / 2;
+
+           result = Mathf.Abs(highestPoint.y - (charController.bounds.center.y - charController.bounds.size.y / 2));
+        }
+
+        return result;
     }
 
 }

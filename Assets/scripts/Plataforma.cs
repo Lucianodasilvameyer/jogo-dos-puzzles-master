@@ -14,6 +14,9 @@ public class Plataforma : MonoBehaviour
     [SerializeField]
     private bool invert;
 
+    //movimento no último frame
+    public Vector3 deltaMovement;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -28,14 +31,43 @@ public class Plataforma : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        
         if (!invert)
+        {
+            
             transform.Translate(direction * speed * Time.deltaTime);
+            deltaMovement = direction * speed;
+
+        }
+           
         else
+        {
+            
             transform.Translate(-direction * speed * Time.deltaTime);
+            deltaMovement = -direction * speed;
+            
+        }
+            
     }
 
     public void InvertDirection()
     {
+        if (!invert)
+        {
+
+            
+            deltaMovement =-direction * speed;
+
+        }
+
+        else
+        {
+
+            deltaMovement = direction * speed;
+
+        }
         invert = !invert;
+        
+        
     }
 }

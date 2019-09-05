@@ -19,6 +19,8 @@ TagManager:
   - PuzzleImagem
   - "PortalEntrarJogoPeda\u7BF3"
   - "PortalSairJogoDosPeda\u7BF3"
+  - plataformaTrigger
+  - Plataforma
   layers:
   - Default
   - TransparentFX
