@@ -82,10 +82,14 @@ public class Player : MonoBehaviour
     [SerializeField]
     bool useJoystick;
 
+    [SerializeField]
+    int quadroCertoAtual = 0;
+    
+
     // Start is called before the first frame update
     void Start()
     {
-
+        quadroCertoAtual = 0;
         plataforma = null;
         externalMovement = Vector3.zero;
         animator = GetComponent<Animator>();
@@ -260,7 +264,43 @@ public class Player : MonoBehaviour
                 other.gameObject.GetComponent<Tile>().Move();
             }
         }
+
+        if (other.gameObject.CompareTag("Quadro") && Input.GetKeyDown(KeyCode.E))
+        {
+            //quadroCertoAtual == 0
+            //Quadro Que estou clicando == 4
+
+            int quadroQueEstouClicando = other.GetComponent<Quadro>().getID();
+
+            //CLICOU NO QUADRO CERTO?
+            if (quadroQueEstouClicando  == quadroCertoAtual )
+            {
+                //ACERTOU O ULTIMO QUADRO?
+                if (quadroCertoAtual == Quadro.quantidadeDeQuadros - 1)
+                {
+                    //completei o puzzle;
+
+                    print("Completou");
+                }
+                else
+                {
+                    print("Acertou");
+                    other.GetComponent<Quadro>().tint( Color.green);
+                    quadroCertoAtual++;
+                }
+                
+
+            }           //Clicou num quadro diferente do último?
+            else if(quadroCertoAtual - 1 != quadroQueEstouClicando)
+            {
+                quadroCertoAtual = 0;
+                print("Errou");
+                game_ref.pintarTodosOsQuadros(Color.white);
+            }
+
+        }
     }
+
     void Jump()
     {
         if (Input.GetAxisRaw("Jump") == 1)

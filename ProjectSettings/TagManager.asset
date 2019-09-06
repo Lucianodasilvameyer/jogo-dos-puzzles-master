@@ -21,6 +21,13 @@ TagManager:
   - "PortalSairJogoDosPeda\u7BF3"
   - plataformaTrigger
   - Plataforma
+  - cavalo
+  - peixes
+  - gatos
+  - passaros
+  - vacas
+  - cachorros
+  - Quadro
   layers:
   - Default
   - TransparentFX
