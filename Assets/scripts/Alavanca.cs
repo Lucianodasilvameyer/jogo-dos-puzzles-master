@@ -8,6 +8,7 @@ public class Alavanca : MonoBehaviour
     public Animator _alavanca;//??
     public Animator _portao1;
     public Animator _portao2;
+    public Animator _portao3;
 
     private bool _alacancaAcionada;
     private bool _playerColidindo;

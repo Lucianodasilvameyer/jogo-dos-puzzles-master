@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public float gravity;
     public float gravityInicial;
     [SerializeField]
-    bool useGravity_;
+    bool useGravity_;  //como aqui a variavel é do tipo bool não é necessario setar o valor dela no start?
   
     public bool useGravity //sempre q a variavel mudar e for necessario realizar mais coisas é melhor usar propriedade
     {
