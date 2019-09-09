@@ -19,7 +19,7 @@ public class Alavanca : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
+        _alavanca = GetComponent<Animator>();
 
 
         _alacancaAcionada = false;
@@ -57,5 +57,10 @@ public class Alavanca : MonoBehaviour
     public void destravar(bool b)
     {
         destravado = b;
+    }
+
+    public void acionar()
+    {
+        _alavanca.SetTrigger("acionar");
     }
 }

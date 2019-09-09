@@ -281,12 +281,17 @@ public class Player : MonoBehaviour
                     //completei o puzzle;
 
                     print("Completou");
+
+                    other.GetComponent<Quadro>().tint(Color.green);
+                    other.GetComponent<Quadro>().descerAlavanca();
                 }
                 else
                 {
                     print("Acertou");
                     other.GetComponent<Quadro>().tint( Color.green);
+                    other.GetComponent<Quadro>().descerAlavanca();
                     quadroCertoAtual++;
+
                 }
                 
 

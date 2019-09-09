@@ -51,7 +51,7 @@ public class TreinoNoPlayer1 : MonoBehaviour
 
     private bool teleportando = false;
 
-    int quadroAtual = 0;
+    int quadroCerto = 0;
 
     public bool useGravity
     {
@@ -87,7 +87,7 @@ public class TreinoNoPlayer1 : MonoBehaviour
     {
 
     }
-    public void andarComRotacao() //no exemplo estava só void, mas só void seria private? não haveria como colocar uma função private no LateUpdate?   
+    /*public void andarComRotacao() //no exemplo estava só void, mas só void seria private? não haveria como colocar uma função private no LateUpdate?   
     {
         input = Vector3.zero; // aqui tem que pegar o input do jogador, por isso o Input recebe vector3.zero?
         if (!useJoystick)    //posso usar tanto vector3 quanto vecto2 quando estiver criando a rotação?  
@@ -189,23 +189,25 @@ public class TreinoNoPlayer1 : MonoBehaviour
         {
             int quadroEscolhido = other.gameObject.GetComponent<Quadro>().getID();
 
-            if (quadroEscolhido == quadroAtual)
+            if (quadroEscolhido == quadroCerto) //aqui entra se os valores forem iguais
             {
-                if(quadroAtual == Quadro.quantidadeDeQuadros - 1)
+                if(quadroCerto == Quadro.quantidadeDeQuadros - 1)
                 {
                     //puzzle completo;
                 }
                 else
                 {
-                    quadroAtual++;
+                    quadroCerto++;
+                    //acertou
                 }
             }
-            else if(quadroAtual - 1 != quadroEscolhido)
+            else if(quadroCerto - 1 != quadroEscolhido)// se sair daqui não acontece nada
             {
-                quadroAtual = 0;
+                quadroCerto = 0;
+                //errou
             }
         }
     }
-
+    */
 
 }

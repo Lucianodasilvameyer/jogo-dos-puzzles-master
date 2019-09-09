@@ -12,6 +12,8 @@ public class Quadro : MonoBehaviour
 
     [SerializeField]
     int quantidadeDeQuadros_;
+    [SerializeField]
+    Alavanca alavanca;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,4 +35,9 @@ public class Quadro : MonoBehaviour
     {
         GetComponent<MeshRenderer>().material.color = color;
     }
+    public void descerAlavanca()
+    {
+        alavanca.acionar();
+    }
+
 }
