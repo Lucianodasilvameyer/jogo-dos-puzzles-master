@@ -39,5 +39,9 @@ public class Quadro : MonoBehaviour
     {
         alavanca.acionar();
     }
+    public void subirAlavanca()
+    {
+        alavanca.erro();
+    }
 
 }

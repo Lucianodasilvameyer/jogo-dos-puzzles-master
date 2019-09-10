@@ -15,6 +15,7 @@ public class Portal : MonoBehaviour
         if (other.gameObject.CompareTag("Player") )
         {
             other.transform.position = destino.position;
+            Camera.main.transform.rotation = destino.rotation;
             other.GetComponent<Player>().setTeleportando(true);
         }
     }

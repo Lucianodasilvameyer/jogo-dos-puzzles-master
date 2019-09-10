@@ -142,4 +142,27 @@ public class PuzzleImagem : MonoBehaviour    //aonde este script foi arrastado?
             }
         }
     }
+
+
+    public void setupCompleto()
+    {
+        GameObject[] tilesGO = GameObject.FindGameObjectsWithTag("Tile");
+        List<GameObject> tilesGoList = tilesGO.ToList();
+        int IDcheck = 0;
+
+        for (int i = 0; i < tiles.GetLength(0); i++)
+        {
+            for (int j = 0; j < tiles.GetLength(1); j++)
+            {
+                int index = 0;
+               
+                    index = tilesGoList.FindIndex(x => x.GetComponent<Tile>().id == IDcheck++);
+
+                tiles[j, i] = tilesGoList[index].GetComponent<Tile>();
+                tilesGoList.RemoveAt(index);
+            }
+        }
+
+        ReposicionarTiles();
+    }
 }

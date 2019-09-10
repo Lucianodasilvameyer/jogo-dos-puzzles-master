@@ -87,9 +87,9 @@ public class TreinoNoPlayer1 : MonoBehaviour
     {
 
     }
-    /*public void andarComRotacao() //no exemplo estava só void, mas só void seria private? não haveria como colocar uma função private no LateUpdate?   
+    public void andarComRotacao() //no exemplo estava só void, mas só void seria private? não haveria como colocar uma função private no LateUpdate?   
     {
-        input = Vector3.zero; // aqui tem que pegar o input do jogador, por isso o Input recebe vector3.zero?
+        /*input = Vector3.zero; // aqui tem que pegar o input do jogador, por isso o Input recebe vector3.zero?
         if (!useJoystick)    //posso usar tanto vector3 quanto vecto2 quando estiver criando a rotação?  
             input = new Vector3(Input.GetAxisRaw("Horizontal"), (Input.GetAxisRaw("Vertical"));
         else
@@ -206,8 +206,8 @@ public class TreinoNoPlayer1 : MonoBehaviour
                 quadroCerto = 0;
                 //errou
             }
-        }
+        }*/
     }
-    */
+    
 
 }

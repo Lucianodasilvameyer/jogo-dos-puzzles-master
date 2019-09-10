@@ -8,9 +8,58 @@ public class Game : MonoBehaviour
     [SerializeField]
     Quadro[] quadros;
 
+    [SerializeField]
+    Alavanca alavancaQuadros;
+
+    [SerializeField]
+    Alavanca alavancaLabirinto;
+
+    [SerializeField]
+    Alavanca alavancaPecas;
+    [SerializeField]
+    PuzzleImagem puzzle;
+
+
     private void Start()
     {
+        //1 == true
+        //0 == false
+        if(PlayerPrefs.GetInt("NewGame") == 1) // caso comece um novo jogo
+        {
+            //limpar os puzzles completados
+            PlayerPrefs.SetInt(alavancaQuadros.name, 0);
+            PlayerPrefs.SetInt(alavancaLabirinto.name, 0);
+            PlayerPrefs.SetInt(alavancaPecas.name, 0);
+        }
+        else //caso seja modo "Continue"
+        {
+            //verifica quais puzzles já havia completado
+            if (PlayerPrefs.GetInt(alavancaQuadros.name) == 1)
+            {
+                //puzzle quadros completo
+                alavancaPecas.abrirPortao();
+                pintarTodosOsQuadros(Color.green);
+                foreach(Quadro q in quadros)
+                {
+                    q.descerAlavanca();
+                }
+            }
 
+            if (PlayerPrefs.GetInt(alavancaLabirinto.name) == 1)
+            {
+                //puzzle labirinto completo
+                alavancaLabirinto.abrirPortao();
+            }
+
+            if (PlayerPrefs.GetInt(alavancaPecas.name) == 1)
+            {
+                //puzzle pecas completo
+                alavancaPecas.abrirPortao();
+                puzzle.setupCompleto();
+            }
+        }
+        
+        
 
         GameObject[] quadrosGo = GameObject.FindGameObjectsWithTag("Quadro");
 
@@ -30,6 +79,18 @@ public class Game : MonoBehaviour
             q.tint(color);
         }
     }
+    public void resetarTodosOsQuadros()
+    {
+        foreach(Quadro q in quadros)
+        {
+            q.subirAlavanca();
+        }
+    }
  
+
+    public void destravarAlavancaQuadros()
+    {
+        alavancaQuadros.destravar(true);
+    }
 
 }

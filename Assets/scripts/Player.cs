@@ -284,6 +284,8 @@ public class Player : MonoBehaviour
 
                     other.GetComponent<Quadro>().tint(Color.green);
                     other.GetComponent<Quadro>().descerAlavanca();
+                    game_ref.destravarAlavancaQuadros();
+                    
                 }
                 else
                 {
@@ -301,6 +303,8 @@ public class Player : MonoBehaviour
                 quadroCertoAtual = 0;
                 print("Errou");
                 game_ref.pintarTodosOsQuadros(Color.white);
+
+                game_ref.resetarTodosOsQuadros();
             }
 
         }

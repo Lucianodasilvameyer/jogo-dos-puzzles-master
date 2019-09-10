@@ -6,9 +6,10 @@ public class Alavanca : MonoBehaviour
 {
     public string _playerTag = "Player";//??
     public Animator _alavanca;//??
-    public Animator _portao1;
-    public Animator _portao2;
-    public Animator _portao3;
+    public Animator portao;
+
+    [SerializeField]
+    bool usaPortao;
 
     private bool _alacancaAcionada;
     private bool _playerColidindo;
@@ -29,13 +30,12 @@ public class Alavanca : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_playerColidindo && !_alacancaAcionada && Input.GetKeyDown(KeyCode.E) && destravado)// o isTimerOn da função IsRunning é true enquanto o timer do Sino estiver rodando  
+        if(_playerColidindo && !_alacancaAcionada && Input.GetKeyDown(KeyCode.E) && destravado && usaPortao)// o isTimerOn da função IsRunning é true enquanto o timer do Sino estiver rodando  
         {                                                                                                       // não é necessario colocar o textoCountdown.enabled aqui por que o         
 
-            _alavanca.SetTrigger("Ligar");
-            _portao1.SetTrigger("Abrir");
-            _alacancaAcionada = true;
+            abrirPortao();
         }
+
     }
     private void OnTriggerEnter(Collider other)// quando entrou na tag o _playerColidindo fica true 
     {
@@ -61,6 +61,24 @@ public class Alavanca : MonoBehaviour
 
     public void acionar()
     {
+        _alavanca.ResetTrigger("errar");
         _alavanca.SetTrigger("acionar");
+    }
+    public void erro()
+    {
+        _alavanca.ResetTrigger("acionar");
+        _alavanca.SetTrigger("errar");
+        
+    }
+
+    public void abrirPortao()
+    {
+        if (!usaPortao) return;
+
+        _alavanca.SetTrigger("Ligar");
+        portao.SetTrigger("Abrir");
+        _alacancaAcionada = true;
+
+        PlayerPrefs.SetInt(gameObject.name, 1);
     }
 }

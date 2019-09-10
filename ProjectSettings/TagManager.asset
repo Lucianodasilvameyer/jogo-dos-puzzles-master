@@ -32,6 +32,7 @@ TagManager:
   - PortalSairDaGaleria
   - PortalEntrarJogoPedacos
   - PortalSairJogoDosPedacos
+  - Menu
   layers:
   - Default
   - TransparentFX
