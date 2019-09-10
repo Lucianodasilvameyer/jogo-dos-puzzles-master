@@ -28,6 +28,10 @@ TagManager:
   - vacas
   - cachorros
   - Quadro
+  - PortalEntrarNaGaleria
+  - PortalSairDaGaleria
+  - PortalEntrarJogoPedacos
+  - PortalSairJogoDosPedacos
   layers:
   - Default
   - TransparentFX
