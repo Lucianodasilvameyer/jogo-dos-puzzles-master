@@ -5,13 +5,13 @@ using UnityEngine;
 public class Alavanca : MonoBehaviour
 {
     public string _playerTag = "Player";//??
-    public Animator _alavanca;//??
-    public Animator portao;
+    public Animator _alavanca;//aqui tem q arrastar o respectivo animator para ativalo na hora certa? 
+    public Animator portao; //as alavancas ja controlam os portães, por isso esta parte não é necessaria?
 
     [SerializeField]
     bool usaPortao;
 
-    private bool _alacancaAcionada;
+    private bool _alavancaAcionada;
     private bool _playerColidindo;
 
     [SerializeField]
@@ -20,17 +20,17 @@ public class Alavanca : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _alavanca = GetComponent<Animator>();
+        _alavanca = GetComponent<Animator>(); 
 
 
-        _alacancaAcionada = false;
+        _alavancaAcionada = false;
         _playerColidindo = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(_playerColidindo && !_alacancaAcionada && Input.GetKeyDown(KeyCode.E) && destravado && usaPortao)// o isTimerOn da função IsRunning é true enquanto o timer do Sino estiver rodando  
+        if(_playerColidindo && !_alavancaAcionada && Input.GetKeyDown(KeyCode.E) && destravado && usaPortao)// o isTimerOn da função IsRunning é true enquanto o timer do Sino estiver rodando  
         {                                                                                                       // não é necessario colocar o textoCountdown.enabled aqui por que o         
 
             abrirPortao();
@@ -64,6 +64,11 @@ public class Alavanca : MonoBehaviour
         _alavanca.ResetTrigger("errar");
         _alavanca.SetTrigger("acionar");
     }
+  /*public void descerAlavanca() //pq não posso colocar esta função ja no script da Alavanca
+    {
+        acionar();
+    }
+    */
     public void erro()
     {
         _alavanca.ResetTrigger("acionar");
@@ -77,7 +82,7 @@ public class Alavanca : MonoBehaviour
 
         _alavanca.SetTrigger("Ligar");
         portao.SetTrigger("Abrir");
-        _alacancaAcionada = true;
+        _alavancaAcionada = true;
 
         PlayerPrefs.SetInt(gameObject.name, 1);
     }

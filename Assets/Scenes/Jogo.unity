@@ -1407,7 +1407,7 @@ Transform:
   m_LocalScale: {x: 0.6525437, y: 0.98645836, z: 0.14586782}
   m_Children: []
   m_Father: {fileID: 1445021498}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: -7.0740004, y: -179.99998, z: 0}
 --- !u!65 &260700098
 BoxCollider:
@@ -2766,7 +2766,7 @@ Transform:
   m_LocalScale: {x: 0.26502466, y: 1.7731218, z: 0.14586782}
   m_Children: []
   m_Father: {fileID: 1445021498}
-  m_RootOrder: 12
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 34.814003, y: -179.99998, z: 0}
 --- !u!95 &623235498
 Animator:
@@ -2858,7 +2858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTag: Player
-  _alavanca: {fileID: 0}
+  _alavanca: {fileID: 623235498}
   portao: {fileID: 0}
   usaPortao: 0
   destravado: 0
@@ -3782,7 +3782,7 @@ Transform:
   m_LocalScale: {x: 0.26502466, y: 1.7731218, z: 0.14586782}
   m_Children: []
   m_Father: {fileID: 1445021498}
-  m_RootOrder: 14
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 34.814003, y: -179.99998, z: 0}
 --- !u!95 &926486182
 Animator:
@@ -3874,7 +3874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTag: Player
-  _alavanca: {fileID: 0}
+  _alavanca: {fileID: 926486182}
   portao: {fileID: 0}
   usaPortao: 0
   destravado: 0
@@ -4940,7 +4940,7 @@ Transform:
   m_LocalScale: {x: 0.6525437, y: 0.98645836, z: 0.14586782}
   m_Children: []
   m_Father: {fileID: 1445021498}
-  m_RootOrder: 13
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: -7.0740004, y: -179.99998, z: 0}
 --- !u!65 &1063011494
 BoxCollider:
@@ -5904,7 +5904,7 @@ Transform:
   m_LocalScale: {x: 0.26502466, y: 1.7731218, z: 0.14586782}
   m_Children: []
   m_Father: {fileID: 1445021498}
-  m_RootOrder: 16
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 34.814003, y: -179.99998, z: 0}
 --- !u!95 &1225489685
 Animator:
@@ -5996,7 +5996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTag: Player
-  _alavanca: {fileID: 0}
+  _alavanca: {fileID: 1225489685}
   portao: {fileID: 0}
   usaPortao: 0
   destravado: 0
@@ -6307,7 +6307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTag: Player
-  _alavanca: {fileID: 0}
+  _alavanca: {fileID: 1354150579}
   portao: {fileID: 0}
   usaPortao: 0
   destravado: 0
@@ -6956,14 +6956,14 @@ Transform:
   - {fileID: 643289901}
   - {fileID: 1354150578}
   - {fileID: 1123745133}
+  - {fileID: 1620308871}
+  - {fileID: 1917140524}
   - {fileID: 623235497}
   - {fileID: 1063011493}
   - {fileID: 926486181}
   - {fileID: 260700097}
   - {fileID: 1225489684}
   - {fileID: 1492276235}
-  - {fileID: 1620308871}
-  - {fileID: 1917140524}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7109,7 +7109,7 @@ Transform:
   m_LocalScale: {x: 0.6525437, y: 0.98645836, z: 0.14586782}
   m_Children: []
   m_Father: {fileID: 1445021498}
-  m_RootOrder: 17
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: -7.0740004, y: -179.99998, z: 0}
 --- !u!65 &1492276236
 BoxCollider:
@@ -7657,7 +7657,7 @@ Transform:
   m_LocalScale: {x: 0.26502466, y: 1.7731218, z: 0.14586782}
   m_Children: []
   m_Father: {fileID: 1445021498}
-  m_RootOrder: 18
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 34.814003, y: -179.99998, z: 0}
 --- !u!114 &1620308872
 MonoBehaviour:
@@ -8401,7 +8401,7 @@ Transform:
   m_LocalScale: {x: 0.6525437, y: 0.98645836, z: 0.14586782}
   m_Children: []
   m_Father: {fileID: 1445021498}
-  m_RootOrder: 19
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: -7.0740004, y: -179.99998, z: 0}
 --- !u!65 &1917140525
 BoxCollider:
@@ -9226,17 +9226,17 @@ PrefabInstance:
     - target: {fileID: 1298937305782888640, guid: 4afb2acc26d09f242b2e05c1799836bc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 114.4
+      value: 8.29
       objectReference: {fileID: 0}
     - target: {fileID: 1298937305782888640, guid: 4afb2acc26d09f242b2e05c1799836bc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 61.94
+      value: 57.277
       objectReference: {fileID: 0}
     - target: {fileID: 1298937305782888640, guid: 4afb2acc26d09f242b2e05c1799836bc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 145.9
+      value: 168.53
       objectReference: {fileID: 0}
     - target: {fileID: 1298937305782888640, guid: 4afb2acc26d09f242b2e05c1799836bc,
         type: 3}
