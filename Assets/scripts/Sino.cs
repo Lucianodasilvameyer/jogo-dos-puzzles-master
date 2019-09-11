@@ -60,7 +60,7 @@ public class Sino : MonoBehaviour
         timer = Timer.Register(TempoDebatidaMax, desativarCountdown); // aqui cria o timer
 
         textoCountdown.enabled = true;
-        alavanca.destravar(true);
+        alavanca.destravar(true);//aqui libera a alavanca do labirinto
 
 
     }

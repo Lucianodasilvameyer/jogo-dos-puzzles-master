@@ -22,20 +22,38 @@ public class TreinoNoGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        int[] numeros = { 1, 5, 10 };
+        int[] segundoArray = new int[3];
+        segundoArray[0] = 100;
+        segundoArray[1] = 5;
+
+        numeros = segundoArray;
+
+
+        GameObject []QuadroRe = GameObject.FindGameObjectsWithTag("Quadro"); //pq criar um array aqui?
+
+        quadros = new Quadro[QuadroRe.Length]; // aqui tem q deixar espaço livre para usar o array ou simplesmente criar espaço no array quadros definindo q ele terá o mesmo espaço que o QuadroRe 
+
+        for(int i =0; i< QuadroRe.Length; i++)//pq aqui tem q percorrer o array QuadroRe  
+        {
+            quadros[i] = QuadroRe[i].GetComponent<Quadro>();//aqui pega cada quadro e coloca dentro do array quadros
+        }
+
         if (PlayerPrefs.GetInt("NewGame") == 1)
         {
             PlayerPrefs.SetInt(alavancaLabirinto.name, 0);
-            PlayerPrefs.SetInt(alavancaPecas.name,0);
-            PlayerPrefs.SetInt(alavancaQuadros.name,0);
+            PlayerPrefs.SetInt(alavancaPecas.name, 0);
+            PlayerPrefs.SetInt(alavancaQuadros.name, 0);
         }
         else
         {
-            if (PlayerPrefs.GetInt(alavancaQuadros.name)==1)
+            if (PlayerPrefs.GetInt(alavancaQuadros.name) == 1)
             {
                 alavancaQuadros.abrirPortao();
                 pintarOsQuadros(Color.blue);
 
-                foreach(Quadro q in quadros)
+                foreach (Quadro q in quadros)
                 {
                     q.descerAlavanca();
                 }
@@ -48,19 +66,9 @@ public class TreinoNoGame : MonoBehaviour
             {
                 alavancaPecas.abrirPortao();
 
-                puzzle.setupCompleto();//como o puzzle se refere a alavancaPecas? //o setupCompleto é uma função interna?
+                puzzle.setupCompleto();//aqui a função do script do puzzleimagem q soluciona o jogo
             }
 
-        }
-
-
-        GameObject []QuadroRe = GameObject.FindGameObjectsWithTag("Quadro"); //pq criar um array aqui?
-
-        quadros = new Quadro[QuadroRe.Length];//pq criar um quadro novo aqui? //pq colocar o tamanho do array entre conchetes?
-
-        for(int i =0; i< QuadroRe.Length; i++)//pq aqui tem q percorrer o array QuadroRe  
-        {
-            quadros[i] = QuadroRe[i].GetComponent<Quadro>();
         }
     }
 
@@ -69,11 +77,11 @@ public class TreinoNoGame : MonoBehaviour
     {
         
     }
-    public void pintarOsQuadros(Color32 color)//o parametro Color32 color serve para que? 
+    public void pintarOsQuadros(Color32 color)
     {
-        foreach (Quadro q in quadros) //aqui o parametro utiliza todos os quadros?
+        foreach (Quadro q in quadros) //aqui o parametro utiliza todos os quadros?sim
         {
-            q.Pintar(color);
+            //q.Pintar(color);
         }
     }
     public void resetarTodosOsQuadros()
@@ -83,7 +91,7 @@ public class TreinoNoGame : MonoBehaviour
             q.subirAlavanca(); //no script do player quando o quadroCertoAtual - 1 for diferente do quadroQueEstouClicando vai chamar a função de resetarTodosOsQuadros do script do Game q vai chamar a função subir alavanca do script do quadro q vai chamar a função erro(errar) da alavanca q vai mudar as condições para ativar a animação da alavanca subindo
         }
     }
-    public void destravarAlavancaQuadros()//mas e as alavancas do labirinto e do jogo das peças?
+    public void destravarAlavancaQuadros()//mas e as alavancas do labirinto e do jogo das peças? no caso do labirinto é o sino q libera a alavanca q destranca o portão
     {
         alavancaQuadros.destravar(true);
     }

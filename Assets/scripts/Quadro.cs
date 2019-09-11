@@ -13,7 +13,7 @@ public class Quadro : MonoBehaviour
     [SerializeField]
     int quantidadeDeQuadros_;
     [SerializeField]
-    TreinoNaAlavanca alavanca;
+    Alavanca alavanca;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +41,7 @@ public class Quadro : MonoBehaviour
     }
     public void subirAlavanca()
     {
-        alavanca.errar();
+        alavanca.erro();
     }
 
 }

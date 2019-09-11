@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 3976235}
   - component: {fileID: 3976234}
   m_Layer: 0
-  m_Name: quadro5
+  m_Name: quadro2
   m_TagString: Quadro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,7 +180,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 7.9}
+  m_Size: {x: 1.27, y: 2, z: 12.45}
   m_Center: {x: 0, y: -0.43, z: 1.72}
 --- !u!23 &3976236
 MeshRenderer:
@@ -2096,7 +2096,7 @@ GameObject:
   - component: {fileID: 397121641}
   - component: {fileID: 397121640}
   m_Layer: 0
-  m_Name: quadro6
+  m_Name: quadro5
   m_TagString: Quadro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2142,7 +2142,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 7.9}
+  m_Size: {x: 1.27, y: 2, z: 12.45}
   m_Center: {x: 0, y: -0.43, z: 1.72}
 --- !u!23 &397121642
 MeshRenderer:
@@ -2778,7 +2778,7 @@ Animator:
   m_GameObject: {fileID: 623235496}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3fca2826dc53fd145b3fb6d35586c177, type: 2}
+  m_Controller: {fileID: 9100000, guid: 54a42f31ba39b5447981e4384825f5ce, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3611,7 +3611,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 7.9}
+  m_Size: {x: 1.27, y: 2, z: 12.45}
   m_Center: {x: 0, y: -0.43, z: 1.72}
 --- !u!23 &861907483
 MeshRenderer:
@@ -3794,7 +3794,7 @@ Animator:
   m_GameObject: {fileID: 926486180}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 159c545cd95e6804d90a9ffab63e6691, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1f01541edf48f1546aa3bf2caec376fd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4217,7 +4217,7 @@ Animator:
   m_GameObject: {fileID: 965193219}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4f58b52f54e70ed4e90c254938338ad8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2650c3071c5a70d49860c8456998af22, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5778,7 +5778,7 @@ GameObject:
   - component: {fileID: 1210429046}
   - component: {fileID: 1210429045}
   m_Layer: 0
-  m_Name: quadro1
+  m_Name: quadro3
   m_TagString: Quadro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5824,7 +5824,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 7.9}
+  m_Size: {x: 1.27, y: 2, z: 12.45}
   m_Center: {x: 0, y: -0.43, z: 1.72}
 --- !u!23 &1210429047
 MeshRenderer:
@@ -5916,7 +5916,7 @@ Animator:
   m_GameObject: {fileID: 1225489683}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 20509507150588349b3a263cd6851bfe, type: 2}
+  m_Controller: {fileID: 9100000, guid: 390edd343da1643409e3e4b2f0c537e0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6227,7 +6227,7 @@ Animator:
   m_GameObject: {fileID: 1354150577}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2480e2504ff266e41bb6df9efcb4b06e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3bc3f0119e641ee49a145fa802d32572, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6824,7 +6824,7 @@ GameObject:
   - component: {fileID: 1439677489}
   - component: {fileID: 1439677488}
   m_Layer: 0
-  m_Name: quadro2
+  m_Name: quadro1
   m_TagString: Quadro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6870,7 +6870,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 7.9}
+  m_Size: {x: 1.27, y: 2, z: 12.45}
   m_Center: {x: 0, y: -0.43, z: 1.72}
 --- !u!23 &1439677490
 MeshRenderer:
@@ -7274,7 +7274,7 @@ GameObject:
   - component: {fileID: 1515003426}
   - component: {fileID: 1515003425}
   m_Layer: 0
-  m_Name: quadro3
+  m_Name: quadro6
   m_TagString: Quadro
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7320,7 +7320,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 7.9}
+  m_Size: {x: 1.27, y: 2, z: 12.45}
   m_Center: {x: 0, y: -0.43, z: 1.72}
 --- !u!23 &1515003427
 MeshRenderer:

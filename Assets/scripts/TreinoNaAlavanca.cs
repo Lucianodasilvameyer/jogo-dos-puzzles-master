@@ -4,47 +4,42 @@ using UnityEngine;
 
 public class TreinoNaAlavanca : MonoBehaviour
 {
-    public string _playerTag;//desnecessario?
-    public Animator _alavanca; //aqui tem q arrastar o respectivo animator controller para ativalo na hora certa? 
-    public Animator portao; //as alavancas ja controlam os portães, por isso esta parte do portão não é necessaria?
+    
+    public Animator _alavanca; //aqui tem q arrastar o respectivo animator controller para ativalo na hora certa? sim
+    public Animator portao; //tem q fazer a referencia igual para controlar o a animação do portão pelo codigo
 
-    private bool playerColidindo;
-    private bool alavancaAcionada;
+    private bool playerColidindo = false;
+    private bool alavancaAcionada = false;//quqndo não tem serializefield pode setar antes do start?
 
     [SerializeField]
     bool utilizarPortao;
 
     [SerializeField]
-    private bool destravada; //pq colocar [serializefield] no destravada e no utilizarPortao?
+    private bool destravada; //pq colocar [serializefield] no destravada e no utilizarPortao? para caso mude de valor ver no inspector
     // Start is called before the first frame update
     void Start()
     {
-        _alavanca = GetComponent<Animator>();//para q serve esta parte sendo q tem q arrastar cada respectiva alavanca para um animator diferente?
+        _alavanca = GetComponent<Animator>();//aqui coloca por codigo o animator na alavanca
 
-        playerColidindo = false; //não poderia setar o playerColidindo e o alavancaAcionada como false antes quando foram declaradas?
-        alavancaAcionada = false;
+          
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-       if(playerColidindo && !alavancaAcionada && Input.GetKeyDown(KeyCode.E) && destravada && utilizarPortao) //pq esta verificação e a função abrir abrirPortao vão dentro do update?
-       {
-            abrirPortao();  
-       }
+       
     }
-    private void OnTriggerEnter(Collider other)
+
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") )
         {
-            playerColidindo = true;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            playerColidindo = false;
+            if (!alavancaAcionada && Input.GetKeyDown(KeyCode.E) && destravada && utilizarPortao) 
+            {
+                abrirPortao();
+            }
+            
         }
     }
     public void detravar(bool b)
@@ -53,14 +48,10 @@ public class TreinoNaAlavanca : MonoBehaviour
     }
     public void acionar()
     {
-        _alavanca.ResetTrigger("errar"); //no site do Unity  tanto o ResetTrigger quanto o SetTrigger redefinem o valor do parametro de acionamento fornecido, mas mesmo assim quando pq a função de descerAlavanca do script do quadro chama esta parte?
-        _alavanca.SetTrigger("acionar");
+        _alavanca.ResetTrigger("errar"); //o resttrigger serve para deixar a condição desligada
+        _alavanca.SetTrigger("acionar");//o SetTrigger serve para deixar a condição ativa
     }
-    /*public void descerAlavanca() //pq não posso colocar esta função ja no script da Alavanca
-    {
-        acionar();
-    }
-    */
+    
     public void errar() //no script do player quando quadroCertoAtual for ou não for igual a Quadro.quantidadeDeQuadros vai chamar a função descerAlavanca do quadro q por sua vez vai chamar a função acionar da alavanca a qual vai mudar as condições para a animação da alavanca descer ou para subir?
     {
         _alavanca.ResetTrigger("acionar");

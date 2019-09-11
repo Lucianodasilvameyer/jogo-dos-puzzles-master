@@ -101,7 +101,7 @@ public class PuzzleImagem : MonoBehaviour    //aonde este script foi arrastado?
             }
         }
 
-        alavanca.destravar(true);
+        alavanca.destravar(true);//aqui destranca a alavanca do jogo das peças
         isComplete = true;
         return isComplete;
     }

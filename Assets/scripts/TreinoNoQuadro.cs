@@ -28,7 +28,7 @@ public class TreinoNoQuadro : MonoBehaviour
     {
         
     }
-    public void GetId()
+    public int GetId()//o tipo da função tem q ser o mesmo da variavel
     {
         return id;//??
     }
@@ -36,13 +36,13 @@ public class TreinoNoQuadro : MonoBehaviour
     {
         GetComponent<MeshRenderer>().material.color = color;//não é aqui q escolhe a cor?
     }
-    public void descerAlavanca()
+    public void descerAlavanca()//usar deste jeito pq é o quadro q controla a alavanca
     {
         alavanca.acionar();
     }
     public void subirAlavanca()
     {
-        alavanca.errar();
+        //alavanca.errar();
     }
 
 

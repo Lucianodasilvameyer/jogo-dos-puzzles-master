@@ -61,10 +61,10 @@ public class Alavanca : MonoBehaviour
 
     public void acionar()
     {
-        _alavanca.ResetTrigger("errar");
+        _alavanca.ResetTrigger("errar");// 
         _alavanca.SetTrigger("acionar");
     }
-  /*public void descerAlavanca() //pq não posso colocar esta função ja no script da Alavanca
+  /*public void desce
     {
         acionar();
     }
