@@ -33,6 +33,7 @@ TagManager:
   - PortalEntrarJogoPedacos
   - PortalSairJogoDosPedacos
   - Menu
+  - Inimigo
   layers:
   - Default
   - TransparentFX

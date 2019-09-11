@@ -36,7 +36,7 @@ public class TreinoNoQuadro : MonoBehaviour
     {
         GetComponent<MeshRenderer>().material.color = color;//não é aqui q escolhe a cor?
     }
-    public void descerAlavanca()//usar deste jeito pq é o quadro q controla a alavanca
+    public void descerAlavanca()//colocar aqui as funções q mechem as alavancas pq são os quadros q controlam as alavancas
     {
         alavanca.acionar();
     }

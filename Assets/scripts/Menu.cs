@@ -28,4 +28,9 @@ public class Menu : MonoBehaviour
         PlayerPrefs.SetInt("NewGame", 0);
         SceneManager.LoadScene(1);
     }
+    public void Quit()
+    {
+        Debug.Log("Saiu");
+        Application.Quit();
+    }
 }

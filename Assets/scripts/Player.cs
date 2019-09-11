@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
 
-    
+    public int vida=100;
+    public string cena;
+
     public float walkSpeed;
     public float runSpeed;
     public float speed;
@@ -87,8 +90,10 @@ public class Player : MonoBehaviour
     
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()//??
     {
+        transform.tag = "Player";
+
         quadroCertoAtual = 0;
         plataforma = null;
         externalMovement = Vector3.zero;
@@ -106,7 +111,13 @@ public class Player : MonoBehaviour
     void LateUpdate()
     {
         AndarComRotacao();
-       
+
+        if (vida <= 0)
+        {
+            vida = 0;
+            morte();
+        }
+              
     }
     void AndarComRotacao()
     {
@@ -340,5 +351,10 @@ public class Player : MonoBehaviour
 
         return result;
     }
+    public void morte()
+    {
+        SceneManager.LoadScene(cena);
+    }
+  
 
 }
