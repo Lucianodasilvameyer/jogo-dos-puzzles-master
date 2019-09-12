@@ -103,6 +103,7 @@ public class Game : MonoBehaviour
 
     public void GameOver()
     {
+        textoGameOver.gameObject.SetActive(true);
         textoGameOver.text = "GameOver";
         gameOver = true;
 

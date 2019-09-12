@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public int vida=100;
     public string cena;
 
+    public float tempoDeEspera=5;
+
     public float walkSpeed;
     public float runSpeed;
     public float speed;
@@ -87,8 +89,13 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     int quadroCertoAtual = 0;
-    
 
+
+    private void Start()
+    {
+        useJoystick = PlayerPrefs.GetInt("UseJoystick") == 1 ? true : false;
+
+    }
     // Start is called before the first frame update
     void Awake()//??
     {
@@ -142,7 +149,7 @@ public class Player : MonoBehaviour
             transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref smoothRotationVelocity, smoothRotationTime);
 
         // Aqui setamos o valor da bool running baseado no pressionamento da tecla shift. Running será true sempre que Shift estiver pressionado, e false quando não estiver pressionado
-        running = (Input.GetKey(KeyCode.LeftShift));
+        running = (Input.GetAxisRaw("Run") == 0) ? true : false;
 
         // salvamos nessa variavel a velocidade alvo
         // verificamos o valor de running, caso true recebemos o valor da corrida, senão da caminhada.
@@ -270,13 +277,13 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Tile"))
         {
            // print(other.gameObject.GetComponent<Tile>().id);
-            if (Input.GetKeyDown(KeyCode.E) && other.gameObject.GetComponent<Tile>().IsMoving() == false)//aqui em  vez de usar o IsMoving() == false eu não poderia usar setIsMoving(false)? assim o isMoving tambem iria para false?
+            if (Input.GetAxisRaw("Interaction") == 1 && other.gameObject.GetComponent<Tile>().IsMoving() == false)//aqui em  vez de usar o IsMoving() == false eu não poderia usar setIsMoving(false)? assim o isMoving tambem iria para false?
             {
                 other.gameObject.GetComponent<Tile>().Move();
             }
         }
 
-        if (other.gameObject.CompareTag("Quadro") && Input.GetKeyDown(KeyCode.E))
+        if (other.gameObject.CompareTag("Quadro") && Input.GetAxisRaw("Interaction") == 1)
         {
             //quadroCertoAtual == 0
             //Quadro Que estou clicando == 4
@@ -353,7 +360,10 @@ public class Player : MonoBehaviour
     }
     public void morte()
     {
-        SceneManager.LoadScene(cena);
+
+        game_ref.GameOver();
+        Timer.Register(tempoDeEspera, () => SceneManager.LoadScene(0));
+        
     }
   
 

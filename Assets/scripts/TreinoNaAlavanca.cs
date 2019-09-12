@@ -35,7 +35,7 @@ public class TreinoNaAlavanca : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") )
         {
-            if (!alavancaAcionada && Input.GetKeyDown(KeyCode.E) && destravada && utilizarPortao) 
+            if (!alavancaAcionada && Input.GetAxisRaw("Interaction") == 1 && destravada && utilizarPortao) 
             {
                 abrirPortao();
             }

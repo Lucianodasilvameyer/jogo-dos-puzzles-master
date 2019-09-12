@@ -12,6 +12,14 @@ public class Inimigo : MonoBehaviour
     private GameObject player;
     private NavMeshAgent navMesh;
     private bool podeAtacar;
+    [SerializeField]
+    int dano;
+    [SerializeField]
+    float tempoAtaque;
+    Timer timer;
+
+    [SerializeField]
+    Transform posicaoRetorno;
 
 
     // Start is called before the first frame update
@@ -25,28 +33,36 @@ public class Inimigo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        navMesh.destination = player.transform.position;
+        
         if (Vector3.Distance(transform.position, player.transform.position) < 1.5f)
         {
             Debug.Log("Esta perto");
             atacar();
         }
+        else if (Vector3.Distance(transform.position, player.transform.position) >= 40f)
+        {
+            navMesh.destination = posicaoRetorno.position; ;
+        }
+        else
+        {
+            navMesh.destination = player.transform.position;
+        }
     }
     void atacar()
     {
         if (podeAtacar == true)
-            StartCoroutine("TempoDeAtaque");
-        player.GetComponent<Player>().vida -= 40;
+        {
+            podeAtacar = false;
+            player.GetComponent<Player>().vida -= dano;
+            timer = Timer.Register(tempoAtaque, resetAtaque); // aqui cria o timer
+        }
+            
+        
     }
-    IEnumerator TempoDeAtaque()
+    void resetAtaque()
     {
-        podeAtacar = false;
-        yield return  WaitForSeconds(1);
         podeAtacar = true;
     }
 
-    private object WaitForSeconds(int v)
-    {
-        throw new NotImplementedException();
-    }
+    
 }

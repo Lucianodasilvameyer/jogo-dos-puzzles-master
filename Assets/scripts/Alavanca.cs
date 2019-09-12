@@ -30,7 +30,7 @@ public class Alavanca : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_playerColidindo && !_alavancaAcionada && Input.GetKeyDown(KeyCode.E) && destravado && usaPortao)// o isTimerOn da função IsRunning é true enquanto o timer do Sino estiver rodando  
+        if(_playerColidindo && !_alavancaAcionada && Input.GetAxisRaw("Interaction") == 1 && destravado && usaPortao)// o isTimerOn da função IsRunning é true enquanto o timer do Sino estiver rodando  
         {                                                                                                       // não é necessario colocar o textoCountdown.enabled aqui por que o         
 
             abrirPortao();
