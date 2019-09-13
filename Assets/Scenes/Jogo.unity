@@ -2180,7 +2180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 461266243, guid: 805407d485959a842ab35ecb45c8d0f7, type: 3}
       propertyPath: modoFacil
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 461266243, guid: 805407d485959a842ab35ecb45c8d0f7, type: 3}
       propertyPath: alavanca
