@@ -40,6 +40,18 @@ public class Tile : MonoBehaviour
     [SerializeField]
     public bool isInvisivel;
 
+    public bool IsMoving
+    {
+        get
+        {
+            return isMoving;
+        }
+        set
+        {
+            isMoving = value; 
+        }
+    }
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -91,7 +103,7 @@ public class Tile : MonoBehaviour
 
 
 
-        public void Move() //aqui a sem parametro vai para a posição q tem q ir
+    public void Move() //aqui a sem parametro vai para a posição q tem q ir
     {
         if (direcao == Direcoes.Nenhuma || puzzleImagem_ref.isAnyMoving() == true || puzzleImagem_ref.isPuzzleComplete())
             return;
@@ -117,13 +129,13 @@ public class Tile : MonoBehaviour
                 direction = new Vector3(-1, 0, 0);
                 break;
 
-         /**case Direcoes.Nenhuma:
-             direction= new vector3(0,0,0);
-             break;
-           */
+            /**case Direcoes.Nenhuma:
+                direction= new vector3(0,0,0);
+                break;
+            */
         }
 
-        direction = transform.InverseTransformDirection(direction.normalized);//o InverseTransformDirection deve ser usado quando o vetor representa uma posição no espaço e não uma direção?
+        direction = transform.InverseTransformDirection(direction.normalized);//
 
 
         float distanceToMove = 0;
@@ -134,23 +146,25 @@ public class Tile : MonoBehaviour
             distanceToMove = GetComponent<BoxCollider>().bounds.size.x;
 
         
-        transform.DOMove(transform.position + direction * distanceToMove, timeToMove).OnComplete(() => setIsMoving(false)); //Delegado usado pelo retorno de chamada completado por Lightmapping.com?
-        //transform.DOMove é o comando que passa aonde quer chegar em tanto tempo                                           // o que seria um delegado?
+        transform.DOMove(transform.position + direction * distanceToMove, timeToMove).OnComplete(() => isMoving=false); //Delegado usado pelo retorno de chamada completado por Lightmapping.com?
+        //transform.DOMove é o comando que passa aonde quer chegar em tanto tempo                                           // o que seria um delegado?serve para guardar varios metodos
         //transform.position é a posição atual                                                                              //o que seria um retorno de chamada completado por Lightmapping.com?
         // direction é direção                                                                                                //neste caso para q serve o => setIsMoving(false)? 
-        //distanceToMove é quanto tem q andar
-        //timeToMove é quanto tempo tem para chegar
+        //distanceToMove é quanto tem q andar                                                                                  //(timeToMove)tempo de duração
+        //timeToMove é quanto tempo tem para chegar                                                                            //(transform.position + direction * distanceToMove)onde tem q ir
+                                                                                                                                //exemplo faid in(quando carregar o jogo)após isso algo acontece
+        
+        Debug.Log(isMoving = true);
 
-        setIsMoving(true);//?
-
-        if(!isInvisivel && tileInvisivel.IsMoving() == false)//aqui se usa a função isMoving para só checar se esta se movimentando ou não 
+        if (!isInvisivel && isMoving == false)//aqui se usa a função isMoving para só checar se esta se movimentando ou não 
         {                                                    //aqui só o tile visivel pode mexer ele e o invisivel
             
-            tileInvisivel.transform.DOMove(tileInvisivel.transform.position + (direction * -1) * distanceToMove, timeToMove).OnComplete(() => { tileInvisivel.setIsMoving(false);// o OnComplete(() => { tileInvisivel.setIsMoving(false) serve para dizer q terminou o movimento
+            tileInvisivel.transform.DOMove(tileInvisivel.transform.position + (direction * -1) * distanceToMove, timeToMove).OnComplete(() => {
+                isMoving=false;// o OnComplete(() => { tileInvisivel.setIsMoving(false) serve para dizer q terminou o movimento
                 print( "Completou? " +   puzzleImagem_ref.isPuzzleComplete());
             });
 
-            tileInvisivel.setIsMoving(true);
+            tileInvisivel.isMoving=true;
 
 
             // trocando os tiles de lugar na matriz
@@ -172,17 +186,10 @@ public class Tile : MonoBehaviour
 
 
             }
-
-
-        }
-        
-
+        }    
     }
 
-    void setIsMoving(bool b)
-    {
-        isMoving = b;
-    }
+    
 
     void Move(Direcoes? dir)//aqui a com parametro vai para a possição q se quer
     {
@@ -228,10 +235,7 @@ public class Tile : MonoBehaviour
                                                                               //1f é quanto tempo tem para chegar
     }
 
-    public bool IsMoving()
-    {
-        return isMoving;// este isMoving pode retornar tanto true quanto false? 
-    }
+    
     /*
     public void Movimento1()
     {
