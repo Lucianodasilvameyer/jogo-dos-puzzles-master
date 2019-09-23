@@ -277,7 +277,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Tile"))
         {
            // print(other.gameObject.GetComponent<Tile>().id);
-            if (Input.GetAxisRaw("Interaction") == 1 && other.gameObject.GetComponent<Tile>().IsMoving() == false)//aqui em  vez de usar o IsMoving() == false eu não poderia usar setIsMoving(false)? assim o isMoving tambem iria para false?
+            if (Input.GetAxisRaw("Interaction") == 1 && other.gameObject.GetComponent<Tile>().IsMoving == false)//aqui em  vez de usar o IsMoving() == false eu não poderia usar setIsMoving(false)? assim o isMoving tambem iria para false?
             {
                 other.gameObject.GetComponent<Tile>().Move();
             }

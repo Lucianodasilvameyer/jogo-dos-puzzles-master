@@ -43,5 +43,5 @@ public class Quadro : MonoBehaviour
     {
         alavanca.erro();
     }
-
+  
 }

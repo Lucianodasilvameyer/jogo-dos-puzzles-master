@@ -110,7 +110,7 @@ public class PuzzleImagem : MonoBehaviour    //aonde este script foi arrastado?
     {
         foreach (Tile t in tiles)
         {
-            if (t.IsMoving() == true) return true;
+            if (t.IsMoving == true) return true;
         }
         return false;
     }

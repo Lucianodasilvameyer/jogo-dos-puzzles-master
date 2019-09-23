@@ -48,7 +48,7 @@ public class TreinoNaAlavanca : MonoBehaviour
     }
     public void acionar()
     {
-        _alavanca.ResetTrigger("errar"); //o resttrigger serve para deixar a condição desligada
+        _alavanca.ResetTrigger("errar"); //o resetTrigger serve para deixar a condição desligada
         _alavanca.SetTrigger("acionar");//o SetTrigger serve para deixar a condição ativa
     }
     

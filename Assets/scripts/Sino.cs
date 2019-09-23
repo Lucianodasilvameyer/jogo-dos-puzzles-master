@@ -12,6 +12,8 @@ public class Sino : MonoBehaviour
     [SerializeField]
     Alavanca alavanca;
 
+
+
     // Start is called before the first frame update
 
     // [SerializeField]

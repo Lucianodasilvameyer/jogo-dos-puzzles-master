@@ -4071,7 +4071,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.7331412e+19, y: 4.7116196e-21, z: 2.769e-42, w: 9e-44}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -10747,6 +10747,11 @@ PrefabInstance:
       propertyPath: useGravity_
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1298937305782888645, guid: 4afb2acc26d09f242b2e05c1799836bc,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1457084008}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4afb2acc26d09f242b2e05c1799836bc, type: 3}
 --- !u!1001 &2139772761848506804
@@ -10830,6 +10835,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2139772761415082129, guid: 675b2b5e7b08cea4caf7983748bd1175,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 675b2b5e7b08cea4caf7983748bd1175, type: 3}
